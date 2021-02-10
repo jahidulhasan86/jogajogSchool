@@ -1,0 +1,10 @@
+<div class="continer-fluid">
+    <div class="row">
+        <div id="call" class="col-sm-12 col-md-12 col-xl-12" style="padding:0;margin:0;">
+            <app-call (chatDivOpen)="toggleChat($event)" (destroyChat)="destroyChatComopnent($event)" [subject]="subject"></app-call>
+        </div>
+        <div class="r-box col-sm-12 col-md-12 col-xl-4" [hidden]="!isChatSelected">
+            <app-chat-resource-layout #chatLayout id="chat-lay-out" [subject]="subject"></app-chat-resource-layout>
+        </div>
+    </div>
+</div>

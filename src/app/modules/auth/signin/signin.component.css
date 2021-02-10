@@ -1,0 +1,191 @@
+.mainPart{
+    background-image:url(../../../../assets/images/Login_signup_BG.png); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.left-heading-text {
+    font-size: 35px;
+}
+
+.login-vector-image {
+    width:92%; 
+    height: 350px;
+}
+.right-heading-text {
+    font-size: 42px;
+    margin-left: 10px;
+}
+
+.forgot-password{
+    float: right; 
+    font-size: small;
+    cursor: pointer;
+    margin-top: 15px
+}
+
+.panel-body {
+    width: 88%;
+}
+
+.imageIcon{
+    width: 25px;
+    margin-top: 10px;
+    margin-left: 5px
+}
+
+.password_toggle{
+    position: absolute; 
+    left: 78%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.form-control {
+    color: black;
+    height: 45px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border: none;
+    border-radius: 6px;
+    padding-left:40px;
+    background: white  
+}
+
+#show{
+    display: none;
+}
+  .login_Btn {
+    background-image: linear-gradient(to bottom, #F5CF1F , #F49E22);
+     color: black;
+     font-size: small;
+     font-weight: 900;
+     border: none;
+     width: 100%;
+     height: 45px;
+     border-radius: 5px;
+ }
+
+
+
+
+
+
+
+
+/*==================================================
+=                        Media Queries             =
+==================================================*/
+
+
+/*==========  Mobile First Method  ==========*/
+
+
+
+/* Medium Devices, Desktops */
+
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (min-width: 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 2560px) {
+    .password_toggle{
+        left: 81%
+    }
+}
+
+
+@media (min-width: 901px) and (max-width: 1060px) {
+    .left-heading-text {
+        font-size: 30px;
+    }
+    .right-heading-text {
+        font-size: 34px;
+    }
+
+    .password_toggle{
+        left: 76%
+    }
+
+}
+
+@media (max-width: 900px) {
+    .left-heading-text {
+        font-size: 25px;
+    }
+    .right-heading-text {
+        font-size: 30px;
+    }
+
+    .password_toggle{
+        left: 74%
+    }
+}
+
+@media (max-width: 767px) {
+    .left-heading-text {
+        font-size: 24px;
+    }
+    .right-heading-text {
+        font-size: 24px;
+    }
+
+    .password_toggle{
+        left: 72%
+    }
+
+    .login-vector-image {
+        height: 290px;
+    }
+}
+
+@media (min-width: 1061px) and (max-width: 1440px) {
+    .password_toggle{
+        left: 78%
+    }
+}
+
+@media (max-width: 575px) {
+    .left-heading-text {
+        font-size: 13px;
+        text-align: center;
+    }
+    .right-heading-text {
+        font-size: 13px;
+        text-align: center;
+        margin-left: 0;
+    }
+
+
+    .password_toggle{
+        left: 74%
+    }
+    .login-vector-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 370px){
+    .password_toggle{
+        left: 72%
+    }
+}

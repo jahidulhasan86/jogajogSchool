@@ -1,0 +1,96 @@
+<mat-card class="example-card">
+
+  <mat-card-header style="    margin-bottom: 3%;text-align: center;padding-top: 5px">
+    <div class="heading" style="width: 100%;">
+      ADD NEW TEACHER
+    </div>
+  </mat-card-header>
+  <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+  <mat-card-content style="background: #F1F3F9">
+    <div style="padding: 2% 5% 0% 5%;">
+      <!-- <form class="example-form"> -->
+      <div class="box-header">General Information</div>
+      <div style="font-size:14px;color:#4D4D4D; margin-bottom:10px">Please enter new teacher details below </div>
+      <div class="margin-bottom">
+        <app-branch-dept (sendDept)="deptReceived($event)" [component_name]="component_name_for_child"
+          [optionReset]="optionReset"></app-branch-dept>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom">
+          First Name
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <input style="font-weight:500;" type='text' class="input-text" placeholder="First Name"
+            [(ngModel)]='model.first_name' />
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Last Name
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <input type='text' class="input-text" placeholder="Last Name" [(ngModel)]='model.last_name' />
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Username*
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <input type='text' class="input-text" placeholder="Username" [(ngModel)]='model.user_name' />
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Password*
+        </div>
+        <div class="col-sm-5 margin-bottom">
+          <input type="password" class="input-text" placeholder="Password*" [(ngModel)]='model.password'>
+        </div>
+
+        <div class="col-sm-1 margin-bottom ">
+          Gender
+        </div>
+        <div class="col-sm-3 margin-bottom">
+          <select class="input-text" placeholder="Gender" [(ngModel)]="model.gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Email
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <input class="input-text" placeholder="Email" [(ngModel)]='model.email'>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-3 margin-bottom ">
+          Address
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <textarea class="input-text textarea-class" placeholder="Address" [(ngModel)]='model.address'></textarea>
+        </div>
+      </div>
+      <!-- </form> -->
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions style="text-align: center; padding-bottom: 2%; padding-top: 3%;">
+    <button class="add-theamButton l2gTheamButtonColor"
+      [disabled]="selectedBranch == null || selectedDepartment == null || this.model.user_name == '' ||this.model.password == '' || this.model.email == ''"
+      (click)="insertTeacher()">SUBMIT</button> &nbsp;
+    <button class="reset-close-btn" (click)="resetField()">RESET</button> &nbsp;
+    <button class="reset-close-btn" (click)="closeDialog()">CLOSE</button>
+  </mat-card-actions>
+
+</mat-card>

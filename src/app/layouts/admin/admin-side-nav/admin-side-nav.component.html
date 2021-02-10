@@ -1,0 +1,54 @@
+<div class="admin-menu">
+  <div class="userPanel" style="padding-bottom: 5%;">
+    <img src='../../../../assets/images/default_profile icon.png' />
+    <div class="userName">
+      <div class="user_name">Welcome, {{currentUser.first_name }} {{currentUser.last_name}}</div>
+      <div style="padding-top: 3%;"><span class="user-role">{{currentUser.user_name | titlecase}}</span></div>
+    </div>
+  </div>
+  <mat-nav-list class="menu_list">
+    <a  mat-list-item routerLinkActive="activeAdminMenu"
+      #Dashboard="routerLinkActive" [routerLink]="['/admin']" [routerLinkActiveOptions]="{exact: true}">
+      <img *ngIf="!Dashboard.isActive" src="../../../../assets/images/admin/Dashboard Icon Default.png" alt="Icon"
+        class="menuIcon">
+      <img *ngIf="Dashboard.isActive" src="../../../../assets/images/admin/Dashboard Icon Selected.png" alt="Icon"
+        class="menuIcon">
+      <span>Dashboard</span>
+    </a>
+    <a [routerLink]="['/admin/class']" mat-list-item routerLinkActive="activeAdminMenu" #Class="routerLinkActive">
+      <img *ngIf="!Class.isActive" src="../../../../assets/images/admin/Teacher Icon Default.png" alt="Icon"
+        class="menuIcon">
+      <img *ngIf="Class.isActive" src="../../../../assets/images/admin/Teacher Icon Selected.png" alt="Icon"
+        class="menuIcon">
+      <span>Class</span>
+    </a>
+    <a [routerLink]="['/admin/teachers']" mat-list-item routerLinkActive="activeAdminMenu" #Teacher="routerLinkActive">
+      <img *ngIf="!Teacher.isActive" src="../../../../assets/images/admin/Teacher Icon Default.png" alt="Icon"
+        class="menuIcon">
+      <img *ngIf="Teacher.isActive" src="../../../../assets/images/admin/Teacher Icon Selected.png" alt="Icon"
+        class="menuIcon">
+      <span>Teachers</span>
+    </a>
+    <a [routerLink]="['/admin/subjects']" mat-list-item routerLinkActive="activeAdminMenu" #SubjectManagement="routerLinkActive">
+      <img *ngIf="!SubjectManagement.isActive" src="../../../../assets/images/admin/Department Icon Default.png"
+        alt="Icon" class="menuIcon">
+      <img *ngIf="SubjectManagement.isActive" src="../../../../assets/images/admin/Department Icon Selected.png"
+        alt="Icon" class="menuIcon">
+      <span>Subject Management</span>
+    </a>
+    <a [routerLink]="['/admin/students']" mat-list-item  routerLinkActive="activeAdminMenu" #Students="routerLinkActive">
+      <img *ngIf="!Students.isActive" src="../../../../assets/images/admin/Students Icon Default.png"
+        alt="Icon" class="menuIcon">
+      <img *ngIf="Students.isActive" src="../../../../assets/images/admin/Students Icon Selected.png"
+        alt="Icon" class="menuIcon">
+      <span>Students</span>
+    </a>
+    <a  id="examActivity" [routerLink]="['/admin/exam_activity']" mat-list-item  routerLinkActive="activeAdminMenu"
+      #ExamActivity="routerLinkActive">
+      <img *ngIf="!ExamActivity.isActive" src="../../../../assets/images/admin/Exam Activity Icon Default.png" alt="Icon" class="menuIcon">
+      <img *ngIf="ExamActivity.isActive" src="../../../../assets/images/admin/Exam Activity Icon Selected.png" alt="Icon" class="menuIcon">
+      <span>Exam Activity</span>
+    </a>
+  </mat-nav-list>
+  <app-log-out></app-log-out>
+</div>

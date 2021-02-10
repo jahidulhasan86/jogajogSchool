@@ -1,0 +1,28 @@
+<mat-toolbar style="width:100%; background: white;color: #908b8b;padding: 0;">
+    <div class="row header_left">
+        <div class="col-sm-2">
+            <!-- <img width="24" height="24" src="../../../../assets/images/LearnToLogo.png" alt=""> -->
+            <button id="side-nav-toggle" mat-icon-button (click)="sideBarToogle()" class="toggle_sidenav">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div class="col-sm-8 text-center">
+            <img style="width: 75%;" src="../../../../assets/images/admin/mentors_logo_large-1.png" alt="">
+        </div>
+        <div class="col-sm-2" [matMenuTriggerFor]="usermenu">
+            <img style="cursor: pointer" width="24" height="24" src="../../../../assets/images/three dots icon.png" alt="">
+        </div>
+        <span flex>
+            <mat-menu #usermenu="matMenu">
+              <button [ngStyle]="teacherRole ? {'margin-top': '0'} : {'margin-top': '9px'}" (click)="openProfile()" matTooltip="View Profile"  mat-menu-item class="usr_action">Profile</button>
+              <button *ngIf="teacherRole"  (click)="goToAdminPanel()"  matTooltip="Go to admin panel" mat-menu-item class="usr_action">Admin panel</button>
+              <!-- <button  mat-menu-item class="usr_action">Help</button> -->
+              <!-- <button (click)="logOut($event)" mat-menu-item class="usr_action">Logout</button> -->
+            </mat-menu>
+          </span>
+         
+      </div>
+      <div class="row header_right d-flex align-items-center">
+          <div class="col-sm-12">{{teacherRole ? 'Instructor Panel':'Student Panel'}}</div>
+      </div>
+</mat-toolbar>

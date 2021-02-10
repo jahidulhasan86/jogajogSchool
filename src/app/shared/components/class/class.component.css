@@ -1,0 +1,117 @@
+.example-card {
+    cursor: pointer;
+    /* padding-right: 3%; */
+    padding-top: 2%;
+    padding-bottom: 2%
+}
+
+.card{
+    box-shadow: 0 10px 20px rgba(250, 230, 230, 0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: .5s;
+}
+
+.class-card-ongoing{
+    border-radius: 18px 8px 8px 18px;
+    border-left: 6px solid red;
+}
+
+.class-card-start-now{
+    border-radius: 18px 8px 8px 18px;
+    border-left: 6px solid #F49D23;
+}
+
+.class-card-not-start{
+    border-radius: 18px 8px 8px 18px;
+    border-left: 6px solid #BFBFBF;
+}
+
+.card:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.heading-left{
+    font-size: 20px; 
+    font-weight: 600; 
+    color: #655a5a;
+}
+
+.heading-right{
+    font-size: 18px; 
+    font-weight: 600; 
+    color: #F49D23; 
+    text-decoration: underline; 
+    text-align: right;    
+}
+
+.class-name{
+    font-size: 17px;
+    font-weight: bold;
+    color: #655a5a;
+    margin: 0;
+}
+
+.subject-name{
+    font-size: 13px;
+    font-weight: 500;
+    color: #655a5a;
+    margin: 0;
+}
+
+.instructor-name{
+    font-size: 12px;
+    font-weight: 500;
+    color: #F49D23;
+}
+button {
+    outline: 0;
+}
+
+.subject-btn{
+    border: none;
+    color: white;
+    border-radius: 15px;
+    width: 75px;
+    height: 25px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: monospace;
+}
+.btn-not-select-bg {
+    background-image: linear-gradient(to top, #F49D23, #F5CD1F)
+}
+.btn-select-bg {
+    background-image: linear-gradient(to top, green, green)
+}
+
+.subject-img{
+    width:45px
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #F49D23;
+}
+
+.dot:hover{
+    background-color: #f5ecec;
+}
+
+.dot-checked{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #F49D23; 
+    background-image: linear-gradient(to top,#f49d23,#f5cd1f);
+}
+
+.content-overflow{
+    white-space: nowrap;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

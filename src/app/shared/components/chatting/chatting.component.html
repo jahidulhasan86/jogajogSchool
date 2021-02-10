@@ -1,0 +1,176 @@
+<div class="chat-container">
+    <div style="height: 400px;">
+        <ul class="chat-box chatContainerScroll"
+            style="overflow-y: auto; height: 400px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <span *ngIf="chatlist.length==0" style="width:100%;margin: 0 auto;">Nothing Here Yet.</span>
+            <span *ngFor="let chat of chatlist">
+                <span *ngIf="!chat.isCallSession" id="{{chat.id}}">
+                    <li class="chat-{{chat.align}}">
+
+                        <div *ngIf="chat.align == 'left'" class="chat-avatar" title="{{chat.from}}">
+                            <!-- For Group chat -->
+
+                            <span *ngIf="selectedGroup.isgroup">
+                                <!-- <img *ngIf="chat.profile_pic"
+                                            src="{{globalValue.profilePhotoUrl}}{{chat.profile_pic}}"> -->
+                                <img *ngIf="chat.profile_pic == null || chat.profile_pic == ''"
+                                    src="../../../../assets/images/default_profile icon.png">
+                            </span>
+
+                            <!-- For Single chat, show profile photo from selectedGroup -->
+
+                            <span *ngIf="!selectedGroup.isgroup">
+                                <!-- <img *ngIf="selectedGroup.profile_pic" height="50" width="50"
+                                            style="border-radius: 50%;"
+                                            src="{{globalValue.profilePhotoUrl}}{{selectedGroup.profile_pic}}">&nbsp;&nbsp; -->
+                                <img *ngIf="!selectedGroup.profile_pic" height="50" width="50"
+                                    style="border-radius: 50%;"
+                                    src="../../../../assets/images/default_profile icon.png">&nbsp;&nbsp;
+                            </span>
+
+                        </div>
+
+                        <!-- When it is just text sms -->
+                        <span
+                            *ngIf="chat.fileType != 'file' &&  chat.fileType != 'image' &&  chat.fileType != 'audio' &&  chat.fileType != 'video'">
+                            <div class="chat-name">{{chat.from}}</div>
+                            <div class="chat-text">
+                                <div *ngIf="!chat.msgWithLink">{{chat.msg}}</div>
+                                <div *ngIf="chat.msgWithLink" [innerHTML]="chat.msgWithLink" class="chat-content"
+                                    style="word-break: break-all;"></div>
+                                <div class="chat-hour"> {{chat.stamp}} </div>
+                            </div>
+                        </span>
+                        <!-- When it is File Start-->
+                        <!-- Image -->
+                        <span class="chat-content" *ngIf="chat.fileType == 'image'">
+                            <div class="chat-name">{{chat.from}}</div>
+                            <div class="chat-text">
+                                <mat-progress-bar mode="indeterminate" *ngIf="chat.isLoader"></mat-progress-bar>
+                                <img title="Click to show better resulation" (click)="imageViewer(chat.msg)"
+                                    style="width: 200px;cursor: pointer;height: auto;border-radius: 8px;"
+                                    class="img-responsive" src="{{chat.thumbnail}}" />
+                                <!-- <img *ngIf="chat.isLoader" src="{{loaderImageUrl}}"
+                              style="position: relative;
+                              top: 0;
+                              left: 37%;" /> -->
+
+                                <div class="chat-hour"> {{chat.stamp}} </div>
+                            </div>
+                        </span>
+                        <!-- Audio -->
+                        <span *ngIf=" chat.fileType == 'audio'" style="width: 75%;">
+                            <div class="chat-name">{{chat.from}}</div>
+                            <div class="chat-text">
+                                <mat-progress-bar mode="indeterminate" *ngIf="chat.isLoader"></mat-progress-bar>
+                                <audio controls style="    width: 100%;">
+                                    <source src="{{chat.msg}}" type="audio/ogg">
+                                </audio>
+                                <!-- <img *ngIf="chat.isLoader" src="{{loaderImageUrl}}"
+                              style="position: relative;
+                              top: 0;
+                              left: 37%;" /> -->
+                                <div class="chat-hour"> {{chat.stamp}} </div>
+                            </div>
+                        </span>
+                        <!-- Video -->
+                        <span *ngIf=" chat.fileType == 'video'">
+                            <div class="chat-name">{{chat.from}}</div>
+                            <div class="chat-text">
+                                <mat-progress-bar mode="indeterminate" *ngIf="chat.isLoader"></mat-progress-bar>
+                                <video width="220" height="140" controls style=" width: 100%;">
+                                    <source src="{{chat.msg}}" type="video/mp4">
+                                </video>
+                                <!-- <img *ngIf="chat.isLoader" src="{{loaderImageUrl}}"
+                              style="position: relative;
+                              top: 0;
+                              left: 37%;" /> -->
+                                <div class="chat-hour"> {{chat.stamp}} </div>
+                            </div>
+                        </span>
+                        <!-- File -->
+                        <span class="chat-content" *ngIf=" chat.fileType == 'file'">
+                            <div class="chat-name">{{chat.from}}</div>
+                            <div class="chat-text">
+                                <mat-progress-bar mode="indeterminate" *ngIf="chat.isLoader"></mat-progress-bar>
+                                <mat-icon style="    position: relative;top: 4px;">description</mat-icon>
+                                <span style="word-break: break-all;">{{chat.fileShortName}}</span>
+                                <!-- Document -->
+                                <a href="{{chat.msg}}" target="_blank" download title="Download">
+                                    <mat-icon style="    position: relative;top: 4px;">archive</mat-icon>
+                                </a>
+                                <!-- <img *ngIf="chat.isLoader" src="{{loaderImageUrl}}" style="position: relative;
+                            top: 0;
+                            left: 37%;" /> -->
+                                <div class="chat-hour"> {{chat.stamp}} </div>
+                            </div>
+                        </span>
+                        <!-- Chat sent failed -->
+                        <!-- <span *ngIf="!chat.sendingFailedText" class="sendingFailed showSendFailed"
+                          style="position: absolute;bottom: -12px;font-size: 11px;right: -10px;color: red;">
+                          <span class="">
+                            <mat-icon style="font-size: 13px;position: absolute;left: -14px;">error_outline</mat-icon>
+                            Sending failed
+                          </span>
+                        </span> -->
+                        <!-- When it is File End -->
+                    </li>
+                </span>
+
+                <span *ngIf="chat.isCallSession" class="row centerside" id="{{chat.id}}">
+                    <div class="">
+                        <mat-icon *ngIf="chat.msg != 'Call ended' && chat.msg != 'Call started'"
+                            style="position: relative;top: 6px; color: red;">phone_missed</mat-icon>
+                        <mat-icon *ngIf="chat.msg == 'Call ended'" style="position: relative;top: 6px; color: #0359f7;">
+                            call_end
+                        </mat-icon>
+                        <mat-icon *ngIf="chat.msg == 'Call started'"
+                            style="position: relative;top: 6px;  color: green;">
+                            phone_forwarded
+                        </mat-icon>
+                        {{chat.msg}}
+                        <div class="chat-time-center"> {{chat.stamp}} </div>
+                    </div>
+                </span>
+            </span>
+        </ul>
+    </div>
+
+    <!--  -->
+    <div class="form-group mt-3 mb-0 textAreaPart" style="position: relative; bottom: 0;">
+
+        <label *ngIf="chatStatus.isVisible"
+            style=" color: #298af1;font-size: 11px; position: absolute; z-index: 999; left: 40px; top: -27px;">
+            <b>{{chatStatus.statusText}} </b> is typing
+            <img style="width: 34px;height: 30px;" src="../../../../assets/images/is_typing-preloader2.gif" />
+        </label>
+
+        <textarea id="msgInput" style="resize: none;" [(ngModel)]="msg" [ngModelOptions]="{standalone: true}"
+            (keyup)="enter($event)" (keypress)="composing($event)" (focusout)="composingOut($event)"
+            (drop)='drop($event)' (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" aria-multiline="false"
+            class="form-control" rows="1" placeholder="Type a message">
+        </textarea>
+
+        <span>
+            <label for="file_picker" style="display: inline;">
+                <i id="attachment" style="position: absolute;
+                cursor: pointer;
+                left: 5%;
+                bottom: 50%;">
+                    <img height="30" width="30" src="../../../../assets/images/add_icon_selected.png" alt="Files Icon">
+                </i>
+            </label>
+            <input id="file_picker" type="file" multiple ngModel (change)="getFiles($event);" style="display: none;" />
+        </span>
+
+        <span>
+            <i (click)="send();" class="sendIcon" title="Send" style="position: relative;
+            cursor: pointer;
+            top: -47px;
+            left: 40%;">
+                <img height="30" width="30" src="../../../../assets/images/send icon.png">
+            </i>
+        </span>
+
+    </div>
+</div>

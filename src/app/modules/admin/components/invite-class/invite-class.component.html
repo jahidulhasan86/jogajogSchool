@@ -1,0 +1,31 @@
+<mat-card class="example-card">
+
+    <mat-card-header style="padding: 4%;">
+      <div class="heading" style="width: 100%;">INVITE STUDENT</div>
+    </mat-card-header>
+  
+    <mat-card-content style="text-align: center;">
+      <mat-form-field style="width: 75%;">
+        <mat-chip-list #chipList aria-label="member selection">
+          <mat-chip *ngFor="let member of members;" [selectable]="selectable" [removable]="removable"
+            (removed)="remove(member)">
+            {{member.email}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input style="caret-color: auto;" placeholder="Enter email address" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+  
+      </mat-form-field>
+    </mat-card-content>
+  
+    <mat-card-actions style="text-align: center; padding-bottom: 2%; padding-top: 5%;">
+      <button class="theamButton l2gTheamButtonColor" (click)="invite()">INVITE</button> &nbsp;
+      <button style="border: 2px solid #FAD6B5; color:orange; padding: 0 5% 0 5%; height: 35px;" 
+        (click)="resetField()">RESET</button> &nbsp;
+      <button style="border: 2px solid #FAD6B5; color:orange; padding: 0 5% 0 5%; height: 35px;" 
+        (click)="closeDialog()">CLOSE</button>
+    </mat-card-actions>
+  
+  </mat-card>

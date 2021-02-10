@@ -1,0 +1,30 @@
+.userPanel {
+    text-align: center;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .profileImg {
+    height: 62px;
+    width: 66px;
+    border-radius: 50%;
+  }
+  
+  .user_name {
+    font-size: 14px; 
+    padding-top: 3%
+  }
+  .user-role {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1px 5px 1px 5px; 
+    font-size: 12px;
+  }
+
+  .statusIcon {
+    width: 16px;
+    position: relative;
+    top: -18px;
+    left: 20px;
+    border-radius: 50%;
+  }

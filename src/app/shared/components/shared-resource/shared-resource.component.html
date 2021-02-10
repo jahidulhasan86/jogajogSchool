@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-sm-12 col-xl-12">
+        <mat-tab-group>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span (click)="currentTab('recording')" style="padding: 20%;">Recordings</span>
+                </ng-template>
+                <app-resource-list [resourceList]="resourceList" [currentTab]="selectedTab"></app-resource-list>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span (click)="currentTab('audio-video')" style="padding: 20%;">Audio/Video</span>
+                </ng-template>
+                <app-resource-list [resourceList]="resourceList" [currentTab]="selectedTab"></app-resource-list>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span (click)="currentTab('image')" style="padding: 20%;">Images</span>
+                </ng-template>
+                <app-resource-list [resourceList]="resourceList" [currentTab]="selectedTab"></app-resource-list>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span (click)="currentTab('all')" style="padding: 20%;">All Doc's</span>
+                </ng-template>
+                <app-resource-list [resourceList]="resourceList" [currentTab]="selectedTab"></app-resource-list>
+            </mat-tab>
+
+        </mat-tab-group>
+    </div>
+</div>

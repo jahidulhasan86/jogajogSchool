@@ -1,0 +1,14 @@
+.main{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-image: linear-gradient(to bottom, #33363b, #383d44, #3e444e, #434b58, #495262, #495262, #495262, #495262, #434b58, #3e444e, #383d44, #33363b);
+}
+
+.recording-header{
+    font-size: 25px;
+    text-align: center;
+    color: #cacaca;
+    padding-bottom: 1%;
+}

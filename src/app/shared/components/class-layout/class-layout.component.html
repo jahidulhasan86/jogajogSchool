@@ -1,0 +1,11 @@
+<div class="continer-fluid">
+    <div class="row" style="margin: 2%;">
+        <div class="l-box col-sm-12 col-md-12 col-xl-5" style="overflow-y: auto">
+            <app-class-list [subjectObj]="subjectObj" (SubjectEvtEmitter)="SubjectEvtEmitter($event)"></app-class-list>
+        </div>
+
+        <div class="r-box col-sm-12 col-md-12 col-xl-7">
+            <app-chat-resource-layout [subject]="subject"></app-chat-resource-layout>
+        </div>
+    </div>
+</div>

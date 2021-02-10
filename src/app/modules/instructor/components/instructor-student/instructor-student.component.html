@@ -1,0 +1,101 @@
+<div class="continer-fluid">
+    <div class="row" style="margin: 2%;">
+        <div class="l-box col-sm-12 col-md-12 col-xl-5" style="overflow-y: auto">
+            <div class="l-box-header">
+                <!-- <span
+                    style="width: 157px;color:#3598db;line-height: 43px;font-size: 21px;font-family: MontserratSemiBold;">STUDENTS</span> -->
+
+                <div class="row">
+                    <div class="col-xl-3 col-md-3 col-sm-3 col-3">
+                        <div class="heading">
+                            STUDENTS
+                        </div>
+                    </div>
+                    <div class="searchBar">
+                        <div class="col-xl-2 col-md-2 col-sm-2 col-2">
+                            <mat-icon class="listSearchIcon">search</mat-icon>
+                        </div>
+                        <div class="col-xl-7 col-md-7 col-sm-7 col-7" style="padding: 0;">
+                            <input class="listSearchInput" type="search" placeholder="Search Student here" [(ngModel)]="userFilter.user_name">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="l-box-hr">
+            </div>
+
+            <div class="members">
+                <div *ngFor="let student of students | filterBy: userFilter" class="member-lists" id="{{student.user_id}}"
+                    style="margin-bottom:5px; cursor: pointer;"
+                    [ngClass]="student.user_id != selected_user_id ? 'unSelected-teacher' : 'selected-teacher'"
+                    (click)="selectedStudent(student)">
+                    <div style="display: inline-block;vertical-align: top;">
+                        <img height="53" width="53" src="../../../../../assets/images/Default Profile.png">
+                    </div>
+                    <div style="display:inline-block;margin-left: 5px;
+                    line-height: 1;
+                    margin-top: 8px;width: 235px;">
+                        <div class="participant-name">{{student.user_name | uppercase}}</div>
+                        <div class="participants-email" style="color: #8ea1b4;line-height: 1.5;">Class.
+                            {{student.class_name}}</div>
+                    </div>
+                    <div class="contact" style="display: inline-block;
+                    color: #f49a22;">
+                        N/A
+                    </div>
+                    <div [matMenuTriggerFor]="usermenu" class="menu" style="
+                    float: right;cursor: pointer;
+                    margin-top: 22px;">
+                        <img width="6" height="24" src="../../../../../assets/images/dropdown_3dot.png">
+                    </div>
+                    <span flex>
+                        <mat-menu #usermenu="matMenu">
+                            <span>
+                                <button mat-menu-item>TEST</button>
+                            </span>
+                        </mat-menu>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="r-box col-sm-12 col-md-12 col-xl-7">
+            Chat Component added here
+            <!-- <div class="r-box-header">
+                <div id="chatBadge" *ngIf="notificationCount>0">{{notificationCount}}</div>
+                <span style="width: 110px;height: 35px;border-radius: 30px;margin-right: 16px;"
+                    class="btn btn-primary btn-selector" (click)="updateSelectedDom($event,'chat')">{{'RoomDetails.chat' | translate}}</span>
+                <span
+                    style="width: 110px;height: 35px;border-radius: 30px;margin-right: 16px;border: 1px solid #f49a22;color: #f49a22;"
+                    class="btn btn-selector" (click)="updateSelectedDom($event,'resource')">{{'RoomDetails.resources' | translate}}</span>
+  
+                <span  (click)="updateSelectedDom($event,'discussion')" style="width: 120px;height: 35px;border-radius: 30px;border: 1px solid #f49a22;color: #f49a22;"
+                    class="btn btn-selector">{{'RoomDetails.discussion' | translate}}</span>   
+                    <span (click)="updateSelectedDom($event,'recording')" style="width: 163px;height: 35px;border-radius: 30px;border: 1px solid #f49a22;color: #f49a22;margin-left: 16px;"
+                    class="btn btn-selector">{{'RoomDetails.meeting_recording' | translate}}</span> 
+            </div>
+            <div class="selected" style="min-height: 650px;">
+                <div class="chat-box" style="min-height: 650px;overflow-y: auto;">
+                    <div class="chat-box-header" style="line-height: 1.3;"  *ngIf ="!isDiscussionSelected">
+                        <span>
+                            <img style="margin-top: 6px;" src="../../../../assets/images/rom-box/group_logo.png"
+                                height="53" width="53">
+                        </span>
+                        <span class="chat-room-name">
+                            {{selectedRoomDetails?selectedRoomDetails.conference_name:''}}
+                        </span>
+                        <span class="chat-room-sname">
+                            {{'RoomDetails.active_now' | translate}}
+                        </span>
+                        <hr class="chat-box-hr">
+                    </div>
+                    <div  class="chat-contents" style="text-align: center;font-family: PoplinsRegular;">
+                        <app-chat-room-box *ngIf="isChatSelected"></app-chat-room-box>
+                        <app-resource-room-box *ngIf="isResourceSelected"></app-resource-room-box>
+                        <app-discussion #discussion *ngIf = "isDiscussionSelected" [roomId]="roomId" > </app-discussion>   
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

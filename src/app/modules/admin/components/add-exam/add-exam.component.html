@@ -1,0 +1,515 @@
+<div class="setup-exam-btn">
+    <!-- <span style="font-size: 18px;">{{examListView? 'All Exam Information': 'Exam Setup'}}</span> -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination ">
+        <li class="page-item"><a id="viewExamList"
+            style="border-radius: 21px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+            class="page-link tab-active" (click)="switchToExamActivity('exams'); _activeClick($event);">Exams</a></li>
+        <li class="page-item"><a style="border-radius: 21px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
+            class="page-link tab-default" id="setupExam"
+            (click)="switchToExamActivity('exam_setup'); _activeClick($event);">Exam
+            Setup</a></li>
+        <!-- <li class="page-item"><a style="border-radius: 21px;border-top-left-radius: 0px;border-bottom-left-radius: 0px; cursor:not-allowed;"
+            class="page-link tab-default" href="javascript:void(0)">Exam Results</a></li> -->
+      </ul>
+    </nav>
+  </div>
+  <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+  <div *ngIf="!examListView">
+  
+    <!-- Exam Setup -->
+  
+    <div [hidden]="!examSetupView" class="exam-setup row " style=" padding: 0px 20px; margin: 0;">
+      <div class="col-sm-12 exam-setup-header">
+        <!-- <div class='setup-text'>Setup Exam</div>
+        <div style="font-size: 12px;color: #8c8784;">Please enter basic information to setup new exam</div> -->
+        <div class='setup-text'>{{!examData ? 'Setup Exam' : 'Update Exam'}}</div>
+        <div style="font-size: 12px;color: #8c8784;">Please enter basic information to
+          {{!examData ? 'setup new exam' : 'update exam'}} </div>
+      </div>
+      <div class="col-sm-12" style="padding: 0;">
+        <!-- <form action="" class="setup-exam-form" > -->
+        <div class="row">
+          <div class="col-sm-12 margin-bottom">
+            <app-branch-dept (sendDept)="deptReceived($event)" [component_name]="component_name_for_child"
+                [optionReset]="optionReset">
+              </app-branch-dept>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Class
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <select class="input-text" [(ngModel)]="selectedClass" (change)="classSelector(selectedClass)"
+              [ngClass]="!examData ? 'input-text' : 'input-text-disabled'" [disabled]="examData">
+              <option *ngFor="let class of classes" [ngValue]="class">{{class.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-3 margin-bottom ">
+            Subject
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <select class="input-text" [(ngModel)]="selectedSubject" (ngModelChange)="subjectSelector(selectedSubject)"
+              [ngClass]="!examData ? 'input-text' : 'input-text-disabled'" [disabled]="examData">
+              <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subject_name}}</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Exam Name
+          </div>
+          <div class="col-sm-9 margin-bottom">
+            <input type='text' class="input-text" [(ngModel)]="examModel.name" />
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Teacher
+          </div>
+          <div class="col-sm-9 margin-bottom">
+            <input type='text' [ngClass]="!examModel.teacher_name ? 'input-text' : 'input-text-disabled'"
+              [disabled]="examModel.teacher_name" [(ngModel)]="examModel.teacher_name" />
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            How Long (min.)
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <!-- <input type='number' id="duration" class="input-text" [(ngModel)]="examModel.period_in_minute" /> -->
+            <input type='number' id="duration" class="input-text" (change)="durationEvent($event)"
+              [(ngModel)]="examModel.period_in_minute" />
+          </div>
+          <div class="col-sm-3 margin-bottom ">
+            Per Page
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <input type='number' class="input-text" [(ngModel)]="examModel.per_page_total_question"
+              [ngClass]="!examData ? 'input-text' : 'input-text-disabled'" [disabled]="examData" />
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Score
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <input type='number' class="input-text" [(ngModel)]="examModel.score"
+              (change)="examScoreEvent($event.target.value)" [ngClass]="!examData ? 'input-text' : 'input-text-disabled'"
+              [disabled]="examData" />
+          </div>
+          <div class="col-sm-3 margin-bottom ">
+            Exam Type
+          </div>
+          <div class="col-sm-3 margin-bottom">
+  
+            <!-- <select *ngIf="isExamTypeOpen" class="input-text" (change)="examTypeSelector($event.target.value)">
+              <option *ngFor="let exam_type of exam_type_name" [selected]="exam_type.value === '1'">
+                {{exam_type.viewValue}}</option>
+            </select> -->
+            <select class="input-text" (change)="examTypeSelector($event.target.value)">
+              <option *ngFor="let exam_type of exam_type_name"
+                [selected]="examData ? exam_type.value === examData.exam_type : null">{{exam_type.viewValue}}</option>
+            </select>
+  
+            <select *ngIf="!isExamTypeOpen" class="input-text">
+              <option></option>
+            </select>
+  
+          </div>
+        </div>
+        <div class="row">
+          <!-- <div class="col-sm-3 margin-bottom">
+            Year
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <input type="number" placeholder="YYYY" min="2020" max="2025" class="input-text" [(ngModel)]="examModel.year" />
+          </div> -->
+          <div class="col-sm-3 margin-bottom">
+            Exam Date
+          </div>
+          <div class="col-sm-9 margin-bottom">
+            <input type='date' class="input-text" min="{{dateNow}}" [(ngModel)]="examModel.exam_date"
+              (change)="datePickerEvent($event.target.value);" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Start time
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <!-- <input id="start_time" placeholder="Start time" [disabled]="!examModel.exam_date" class="input-text"
+              aria-label="12hr format" style="width: 100%;" [ngxTimepicker]="default" readonly>
+            <ngx-material-timepicker #default (timeSet)="timeSelector($event, 'start_time')"></ngx-material-timepicker> -->
+  
+            <input id="start_time" placeholder="Start time" value="{{!examData? startTimePickerUIBind : startTimeUIBind}}"
+              [disabled]="!examModel.exam_date" class="input-text" aria-label="12hr format" style="width: 100%;"
+              [ngxTimepicker]="min" [min]="min_start_time" readonly>
+            <ngx-material-timepicker #min (timeSet)="timeSelector($event, 'start_time')"></ngx-material-timepicker>
+  
+          </div>
+  
+          <div class="col-sm-3 margin-bottom">
+            End time
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <input placeholder="End time" [disabled]="true" value="{{endTimePickerUIBind}}" class="input-text"
+              aria-label="12hr format" style="width: 100%;" [ngxTimepicker]="fullTime" [format]="12" readonly>
+            <ngx-material-timepicker #fullTime (timeSet)="timeSelector($event, 'end_time')"></ngx-material-timepicker>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Exam Date
+          </div>
+          <div class="col-sm-9 margin-bottom">
+            <input type="date" placeholder="Pick a date" class="input-text" [(ngModel)]="examModel.exam_date" />
+          </div>
+        </div> -->
+  
+        <!-- <div class="row">
+          <div class="col-sm-3 margin-bottom">
+            Start Time
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <select class="input-text">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+            </select>
+          </div>
+          <div class="col-sm-3 margin-bottom ">
+            End Time
+          </div>
+          <div class="col-sm-3 margin-bottom">
+            <select class="input-text">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+            </select>
+          </div>
+        </div> -->
+        <!-- </form> -->
+      </div>
+  
+    </div>
+  
+    <!-- Question Setup -->
+  
+    <div [hidden]="examSetupView" class="exam-setup row " style=" padding: 0px 20px; margin: 0;">
+  
+      <div class="col-sm-12 exam-setup-header">
+  
+        <img src="../../../../assets/images/lg/new_res/arrow_right icon.png" (click)="goToExamSetupViewToggle()"
+          class="arrow_left" alt="arrow left">
+        <div class='setup-text'>Question Paper</div>
+        <div style="font-size: 12px;color: #8c8784;">Create questionnaire set for your new exam</div>
+  
+        <div *ngIf="!examSetupView && is_submitted_Q_view">
+          <button class="theamButton l2gTheamButtonColor" style="float: right" (click)="updateQuestion()">Update</button>
+        </div>
+  
+      </div>
+  
+      <!-- question create portion -->
+  
+      <div class="create-question col-sm-12" [hidden]="is_submitted_Q_view">
+        <div class="row">
+  
+          <div class="questionNo">
+            Question {{questionCount}}:
+          </div>
+  
+          <div class="question-input">
+            <!-- <input type='text' class="input-text" /> -->
+            <textarea [disabled]="QScoreLimit == 0" name="question" id="" cols="30" rows="1" class="input-text"
+              [(ngModel)]="questionModel.question"></textarea>
+          </div>
+  
+          <div class="col-sm-12" style="padding: 0;">
+            <div class="col-sm-4" style="padding:0">
+              <div class="col-sm-6 text_center" style="padding:0">
+                Question Type:
+              </div>
+              <div class="col-sm-6" style="padding:0">
+                <!-- <select class="input-text" [(ngModel)]="selectedAnsType" (change)="questionTypeChange(selectedAnsType)">
+                  <option value="{{item.id}}" *ngFor="let item of answer_types">{{item.value}}</option>
+                </select> -->
+                <select [disabled]="QScoreLimit == 0" class="input-text"
+                  (change)="questionTypeChange($event.target.value)">
+                  <option *ngFor="let answer_type of answer_types" [selected]="answer_type.id === '1'">
+                    {{answer_type.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4" style="padding: 0;" *ngIf="mcqView">
+              <div class="col-sm-6 text_center" style="padding:0">
+                Options:
+              </div>
+              <div class="col-sm-6" style="padding:0">
+                <!-- <select class="input-text" [(ngModel)]="selectedOption" (change)="selectOptionCount(selectedOption)">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select> -->
+  
+                <select [disabled]="QScoreLimit == 0" class="input-text"
+                  (change)="selectOptionCount($event.target.value)">
+                  <option value="0">Select option</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+  
+              </div>
+            </div>
+            <div class="col-sm-4" style="padding: 0;" *ngIf="textView">
+              <div class="col-sm-6 text_center" style="padding:0">
+                Characters:
+              </div>
+              <div class="col-sm-6" style="padding:0">
+                <input [disabled]="QScoreLimit == 0" type='number' class="input-text"
+                  [(ngModel)]="questionModel.answer_limit" />
+              </div>
+            </div>
+            <div class="col-sm-4" style="padding: 0;">
+              <div class="col-sm-6 text_center" style="padding:0">
+                Score:
+              </div>
+              <div class="col-sm-6" style="padding:0">
+                <input [disabled]="QScoreLimit == 0" type='number' class="input-text" [(ngModel)]="questionModel.score"
+                  (change)="questionScoreEvent($event.target.value)" />
+              </div>
+            </div>
+           
+          </div>
+  
+          <div class="col-sm-12">
+            <!-- MCQ View   -->
+            <div class="row" *ngIf="mcqView">
+              <div class="col-sm-6" *ngIf="option1View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="1" type="radio" name="1" value="1" [(ngModel)]="option" (click)="selectAnswer(1)">
+                    <label for="1" style="width: 100%;">A.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option1" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="option2View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="2" type="radio" name="2" value="2" [(ngModel)]="option" (click)="selectAnswer(2)">
+                    <label for="2" style="width: 100%;">B.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option2" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="option3View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="3" type="radio" name="3" value="3" [(ngModel)]="option" (click)="selectAnswer(3)">
+                    <label for="3" style="width: 100%;">C.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option3" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="option4View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="4" type="radio" name="4" value="4" [(ngModel)]="option" (click)="selectAnswer(4)">
+                    <label for="4" style="width: 100%;">D.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option4" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+      <!-- Submitted question portion -->
+  
+      <div [hidden]="!is_submitted_Q_view">
+        <div class="col-sm-12">
+          <div class="questionNo col-sm-12">
+            Question: <span id="page">{{qLength}}</span>
+          </div>
+          <div class="question-input col-sm-12">
+            <textarea name="question" id="" cols="30" rows="1" class="input-text"
+              [(ngModel)]="questionModel.question"></textarea>
+          </div>
+  
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <div class="col-sm-6">
+                Question Type:
+              </div>
+              <div class="col-sm-6">
+                <select class="input-text" (change)="questionTypeChange($event.target.value)">
+                  <option *ngFor="let answer_type of answer_types"
+                    [selected]="answer_type.id === questionModel.answer_with_type">
+                    {{answer_type.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4" *ngIf="mcqView">
+              <div class="col-sm-6">
+                Options:
+              </div>
+              <div class="col-sm-6">
+                <select class="input-text" id="options" (change)="selectOptionCount($event.target.value)">
+                  <option value="0">Select option</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+  
+              </div>
+            </div>
+            <div class="col-sm-4" *ngIf="textView">
+              <div class="col-sm-6">
+                Characters:
+              </div>
+              <div class="col-sm-6">
+                <input type='number' class="input-text" [(ngModel)]="questionModel.answer_limit" />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-6">
+                Score:
+              </div>
+              <div class="col-sm-6">
+                <input type='number' class="input-text" [(ngModel)]="questionModel.score"
+                  (change)="questionScoreEvent($event.target.value, true)" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-sm-12">
+            <div class="row" *ngIf="mcqView">
+              <div class="col-sm-6" *ngIf="option1View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="SQ1" type="radio" name="SQ1" value="1" [(ngModel)]="option" (click)="selectAnswer(1)">
+                    <label for="1" style="width: 100%;">A.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option1" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="option2View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="SQ2" type="radio" name="SQ2" value="2" [(ngModel)]="option" (click)="selectAnswer(2)">
+                    <label for="2" style="width: 100%;">B.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option2" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="option3View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="SQ3" type="radio" name="SQ3" value="3" [(ngModel)]="option" (click)="selectAnswer(3)">
+                    <label for="3" style="width: 100%;">C.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option3" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="option4View">
+                <div class="option">
+                  <div class="radio-item">
+                    <input id="SQ4" type="radio" name="SQ4" value="4" [(ngModel)]="option" (click)="selectAnswer(4)">
+                    <label for="4" style="width: 100%;">D.
+                      <span class="opt-txt">
+                        <input type='text' class="input-text2" [(ngModel)]="option4" (blur)="selectAnswer()" />
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="text-center" style="padding: 30px;">
+  
+   
+      <button class="btn theamButton l2gTheamButtonColor next-sub-btn button_margin" *ngIf="examSetupView"
+        (click)="!examData ? goToExamSetupViewToggle(): updateExam()">{{!examData?'NEXT': 'SUBMIT'}}</button> 
+  
+      <button [disabled]="examModel.set_of_questions.length != 0" class="btn btn-default reset-btn button_margin" 
+        *ngIf="examSetupView && !examData" (click)="resetExamSetupField()">RESET</button> 
+  
+  
+      <!-- for submitted question paper -->
+      <button class="btn btn-default button_margin" id="btn_next"
+        *ngIf="!examSetupView && submittedQuestions.length > 0"
+        (click)="is_first_submitted_Q_view == true ? changePage(1) : nextPage();">PREVIOUS</button>
+  
+      <button class="btn btn-default button_margin"  id="btn_prev"
+        *ngIf="!examSetupView && submittedQuestions.length > 1" (click)="prevPage()">NEXT</button>
+  
+      <button class="btn theamButton l2gTheamButtonColor button_margin" style="float: right" *ngIf="!examSetupView && is_submitted_Q_view"
+        (click)="backtoQSetupView()">Back to Question setup</button>
+  
+  
+      <!-- For question paper -->
+      <button class="btn theamButton l2gTheamButtonColor button_margin"
+        *ngIf="!examSetupView && !is_submitted_Q_view"
+        (click)="QScoreLimit > 0 ? insertQuestion() : errorMsg(QScoreLimit)">CREATE QUESTION</button> 
+  
+      <button class="btn btn-default button_margin" *ngIf="!examSetupView && !is_submitted_Q_view"
+        (click)="resetQuestionSetupField()">RESET</button> 
+  
+  
+    </div>
+  
+    <!-- For exam create from question setup view -->
+  
+    <div class="text-center">
+  
+      <button class="btn theamButton l2gTheamButtonColor button_margin"
+        *ngIf="!examSetupView && !is_submitted_Q_view"
+        (click)="questionModel.score == QScoreLimit ? finalSubmit() : QScoreLimit == 0 ? finalSubmit() : errorMsg(QScoreLimit)">Submit</button>
+  
+    </div>
+  
+  </div>
+  
+  <div *ngIf="examListView">
+    <app-exam-list (examDataEvent)="receiveExamData($event)"></app-exam-list>
+  </div>

@@ -1,0 +1,106 @@
+<!-- <link href="../../../../assets/fullpage/_grid-framework.css" rel="stylesheet"> -->
+<div id="fullpage" class="container" style="width: 98%;">
+
+  <!-- <div><button class="theamButton" (click)="backtoAnswer('TeacherExams')">Back to Answer papers</button></div> -->
+
+  <div class="section" style="padding-top: 1%;">
+    <div class="panel">
+      <div class="panel-body" style="background-color: #F2F6FC;box-shadow: 3px 3px #EBEFF5;border-radius: 10px;">
+        <div class="row">
+          <div class="col-lg-4">
+            <span class="course-name" style="float: left;">Course : {{quiz.class_name}} {{quiz.subject_name}} {{quiz.name}}<br><span class="xm-name">Exam : {{quiz.exam_type_name}}</span><br>
+              <span *ngIf='quiz.student_name_vw' class="teacher-name">Student : {{quiz.student_name_vw}}</span></span>
+          </div>
+          <div class="col-lg-4" style="text-align: center;">
+            <span class="course-name">Total Marks : {{quiz.score}}<br>
+              <span class="qprogress-name">Question Progress</span>
+              <br><span class="currentQ">{{pager.index + 2 > pager.count ? pager.count : pager.index + 2 }}</span><span class="time-separator">/</span><span class="totalQ">{{pager.count}}</span>
+              </span>
+            <!-- <span>Time: {{ellapsedTime}} / {{duration}}<br><span class="teacher-name">Question: {{pager.index + 1}}/{{pager.count}}</span></span> -->
+          </div>
+          <div class="col-lg-4">
+          <span class="course-name" style="float: right;">Exam Time: {{quiz.period_in_minute}} Minutes <br> </span><br><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">LOADING</p></ngx-spinner>
+  <div id='scrollpanel' class="q-container" *ngIf="mode=='quiz' && quiz" style="overflow-y: scroll; max-height: 330px;overflow-x: hidden;">
+    <div *ngFor="let question of filteredQuestions; index as i">
+      <div style="width: 100%;">
+        <div style="width: 90%;float: left;">
+          <h3 class="q-index">Question {{question.serial_no}} :
+            <span class="questiondesc" [innerHTML]="question.name"></span>
+          </h3>
+        </div>
+        <div style="width: 10%;float:right; padding-left: 1%">
+          <h3 class="q-index" style="color: red;">Marks :
+            <span class="questiondesc" style="color: red;" [innerHTML]="question.score"></span>
+          </h3>
+        </div>
+
+      </div>
+      
+      <div style="width: 100%;">
+        <div style="width: 90%;float: left;" >
+          <div *ngIf="question.questionTypeId==='1'" class="row text-left options" style="margin-left: 1%;">
+            <div class="col-6" *ngFor="let option of question.options">
+              <div class="option">
+                  <div class="radio-item">
+                    <input id="{{option.id}}" type="radio" disabled [(ngModel)]="question.std_answer_vw"  name="{{question.id}}" value="{{option.name}}">
+                    <label for="{{option.id}}">{{option.order}}. <span [ngClass]="{'wrightAnsSelectedOpt': option.name===question.answer}" class="opt-txt">{{option.name}} </span></label>
+                </div>
+              <!--   [ngClass]="{'invalidClass': yourText=='INVALID'}"> -->
+                  <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+              </div>
+            </div>
+            
+          </div>
+          <div *ngIf="question.questionTypeId==='2'" class="row text-left options" style="margin-left: 1%;">
+            <div class="col-lg-12">
+              <div class="option">
+                  <div class="radio-item">
+                  <span style="vertical-align: top">Answer : </span>
+                    <textarea disabled class="cinput" >{{question.std_answer_vw}}</textarea>
+                  
+                </div>
+                  <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div style="width: 10%;float:right;"></div>
+      </div>
+
+      <div *ngIf="isScoring"  style="width: 100%">
+        <div style="width: 90%;float: left;padding-left: 35%;">
+          <h3 class="q-index">Obtained Marks :
+            <span class="questiondesc">
+              <input *ngIf="question.questionTypeId =='1'" type="text" value='{{question.score_against_answer_vw}}' disabled style="width: 10%;text-align: center">
+              <input id='{{question.id}}' *ngIf="question.questionTypeId !='1'" value='{{question.score_against_answer_vw}}'  type="text" (blur)="onMarksSelect(question,$event)" style="width: 10%;text-align: center">
+            </span>
+          </h3>
+        </div>
+        <div style="width: 10%;float:right;"></div>
+      </div>
+
+    </div>    
+  </div>
+  <div>
+    <div class="text-center" style="width: 100%;">
+      <!-- <br><br> -->
+      <button class="btn btn-success" style="margin-top: 2%;padding-right: 2px;" (click)="backToTeacherExamList();">Back to List</button>
+      
+      <button class="btn btn-primary" style="margin-top: 2%;padding-right: 2px;" *ngIf="config.allowBack && pager.index > 0" (click)="goTo(pager.index - 2);">PREVIOUS</button>
+      <button *ngIf='pager.index + 2 < pager.count' style="margin-top: 2%;padding-right: 2px;" class="btn btn-default" (click)="goTo(pager.index + 2);">{{'NEXT'}}</button>        
+      
+      <button *ngIf='isScoring && !isReviewing && pager.index >=pager.count-2' class="btn btn-default" style="margin-top: 2%;padding-right: 2px;" (click)="saveScore()">Score Submit</button>
+      <button *ngIf='isScoring && isReviewing && pager.index >=pager.count-2' class="btn btn-default" style="margin-top: 2%;padding-right: 2px;" (click)="saveScore()">Score Review</button>
+      
+      
+    </div>
+  </div>
+
+</div>

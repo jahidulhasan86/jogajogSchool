@@ -1,0 +1,38 @@
+<div class="admin-menu">
+    
+  <app-user-profile></app-user-profile>
+
+    <mat-nav-list class="menu_list">
+      <a mat-list-item routerLinkActive="activeAdminMenu" #Class="routerLinkActive" [routerLink]="['/student']"
+        [routerLinkActiveOptions]="{exact: true}">
+        <img *ngIf="!Class.isActive" src="../../../../assets/images/admin/Dashboard Icon Default.png" alt="Icon"
+          class="menuIcon">
+        <img *ngIf="Class.isActive" src="../../../../assets/images/admin/Dashboard Icon Selected.png" alt="Icon"
+          class="menuIcon">
+        <span>My Class</span>
+      </a>
+      <a mat-list-item routerLinkActive="activeAdminMenu" #Teacher="routerLinkActive"
+      [routerLink]="['/student/teachers']">
+        <img *ngIf="!Teacher.isActive" src="../../../../assets/images/admin/Teacher Icon Default.png" alt="Icon"
+          class="menuIcon">
+        <img *ngIf="Teacher.isActive" src="../../../../assets/images/admin/Teacher Icon Selected.png" alt="Icon"
+          class="menuIcon">
+        <span>My Teachers</span>
+      </a>
+      <a mat-list-item routerLinkActive="activeAdminMenu" #Student="routerLinkActive" [routerLink]="['/student/class-mate']">
+        <img *ngIf="!Student.isActive" src="../../../../assets/images/admin/Teacher Icon Default.png" alt="Icon"
+          class="menuIcon">
+        <img *ngIf="Student.isActive" src="../../../../assets/images/admin/Teacher Icon Selected.png" alt="Icon"
+          class="menuIcon">
+        <span>My Classmates</span>
+      </a>
+      <a *ngIf= "false" mat-list-item routerLinkActive="activeAdminMenu" #Recent="routerLinkActive" [routerLink]="['/student/recent']">
+        <img *ngIf="!Recent.isActive" src="../../../../assets/images/admin/Department Icon Default.png" alt="Icon"
+          class="menuIcon">
+        <img *ngIf="Recent.isActive" src="../../../../assets/images/admin/Department Icon Selected.png" alt="Icon"
+          class="menuIcon">
+        <span>Recent</span>
+      </a> 
+    </mat-nav-list>
+    <app-log-out></app-log-out>
+  </div>

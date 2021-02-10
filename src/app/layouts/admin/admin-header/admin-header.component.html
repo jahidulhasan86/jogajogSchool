@@ -1,0 +1,21 @@
+<mat-toolbar style="width:100%; background-color: white;color: #908b8b;padding: 0;">
+    <div class="row header_left">
+        <button mat-icon-button (click)="sideBarToogle()" class="toggle_sidenav">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-app-name" style="width: 80%;cursor: pointer;">
+            <img style="width: 52%; position: relative; left: 10%; " src="../../../../assets/images/admin/mentors_logo_large-1.png">
+        </span>
+      </div>
+      <div class="row header_right">
+        <div class="col-sm-2 d-flex align-items-center">
+          Admin Panel
+        </div>
+        <div class="col-sm-5"> 
+        </div>
+        <div class="col-sm-5 text-right">
+          <button *ngIf="teacherRole" (click)="goToInstructorPanel()" matTooltip="Go To Instructor Panel" class="instructor-btn">Instructor Panel</button>
+          <!-- <a  class="logout-btn">Logout</a> -->
+        </div>
+      </div>
+</mat-toolbar>

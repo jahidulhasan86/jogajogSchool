@@ -1,0 +1,32 @@
+.admin-menu{
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: inline-block;
+}
+
+  .menuIcon {
+    width: 20px;
+    margin-right: 10%
+  }
+
+  .activeAdminMenu {
+    background-color: #F2F6FC !important;
+    color: #607D8B !important;
+  }
+
+.menu_list a {
+  font-size: 15px;
+  color: #fff;
+}
+.logoutBtnBN {
+	border: 1px solid orange;
+	border-radius: 38px;
+	padding: 10px 34px 8px 33px;
+	cursor: pointer;
+}
+#sideNavFooter {
+	text-align: center;
+	padding: 15px 0px;
+}
+

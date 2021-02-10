@@ -1,0 +1,13 @@
+
+<app-admin-header (clickToggleBtn)=sideNavbarToggle($event)></app-admin-header>
+
+<mat-sidenav-container id="sidenav_container">
+    <mat-sidenav [opened]="sidebar_open" mode="side" #snav id="side-nav"> 
+        <app-admin-side-nav></app-admin-side-nav>  
+    </mat-sidenav>
+    <mat-sidenav-content style="background: rgb(242, 246, 252);">
+        <!-- <app-header></app-header> -->
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-sidenav-content>    
+  </mat-sidenav-container>

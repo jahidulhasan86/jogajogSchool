@@ -1,0 +1,4 @@
+<div  id = "chat" style="position: absolute;left: 18%;top:2%;"><mat-icon  style="cursor: pointer; color: #f49d23;" (click)= "chatDivOpened()"> chat</mat-icon> </div>
+<div id="callViewID">
+    <iframe id='iframe' (load)='test($event)' [src]="callURL" allow="camera ;microphone " style="width: 100%;"></iframe>
+</div>

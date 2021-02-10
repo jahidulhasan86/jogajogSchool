@@ -1,0 +1,73 @@
+<div class="l-box-header">
+    <!-- <span
+        style="width: 157px;color:#3598db;line-height: 43px;font-size: 21px;font-family: MontserratSemiBold;">TEACHERS</span> -->
+    <div class="row">
+        <div class="col-xl-3 col-md-3 col-sm-3 col-3">
+            <div class="heading">
+                {{list_name | uppercase}}
+            </div>
+        </div>
+        <div class="searchBar">
+            <div class="col-xl-2 col-md-2 col-sm-2 col-2">
+                <mat-icon class="listSearchIcon" matTooltip="Search {{list_name}}">search</mat-icon>
+            </div>
+            <div class="col-xl-7 col-md-7 col-sm-7 col-7" style="padding: 0;">
+                <input class="listSearchInput" type="search" placeholder="Search {{list_name}} here"
+                    [(ngModel)]="userFilter.user_name">
+            </div>
+        </div>
+    </div>
+
+    <hr class="l-box-hr">
+</div>
+
+<div class="members">
+    <span *ngIf="usersObj">
+        <span *ngFor="let user of usersObj.users | filterBy: userFilter">
+            <div *ngIf="user.user_name !== sessionUser.user_name" class="member-lists" id="{{user.user_id}}"
+                style="margin-bottom:5px; cursor: pointer;"
+                [ngClass]="user.user_id != selected_user_id ? 'unSelected-teacher' : 'selected-teacher'"
+                (click)="selectedUser(user)">
+                <div style="display: inline-block; vertical-align: top; position: relative;">
+                    <img height="53" width="53" 
+                        src="../../../../assets/images/Default Profile.png">
+                    <img *ngIf="user.isOnline" class="chat-status-icon"
+                        src="../../../../assets/images/chat-status/status_green.png" />
+                    <img *ngIf="user.onlineStatus == 'away'" class="chat-status-icon"
+                        src="../../../../assets/images/chat-status/Circle_Yellow.png" />
+                    <img *ngIf="user.onlineStatus == 'dnd'" class="chat-status-icon"
+                        src="../../../../assets/images/chat-status/Circle_Red.png" />
+                </div>
+                <div style="display:inline-block;margin-left: 5px;
+        line-height: 1;
+        margin-top: 8px;width: 175px;">
+                    <div class="participant-name">{{user.user_name | uppercase}}</div>
+                    <div *ngIf= "!user.time" class="participants-email" style="color: #8ea1b4;line-height: 1.5;">Dept.
+                        {{user.dept_name}}</div>
+                        <div *ngIf= "user.time" class="participants-email" style="color: #8ea1b4;line-height: 1.5;">
+                            {{user.dept_name}}</div>    
+                </div>
+                <div class="contact" style="display: inline-block;
+        color: #f49a22;" *ngIf = "!user.time">
+                    N/A
+                </div>
+                <div class="contact" style="display: inline-block;
+                color: #f49a22;" *ngIf="user.time">
+                           {{user.time}}
+                        </div>
+                <div [matMenuTriggerFor]="usermenu" class="menu" style="
+        float: right;cursor: pointer;
+        margin-top: 22px;">
+                    <img width="6" height="24" src="../../../../assets/images/dropdown_3dot.png">
+                </div>
+                <span flex>
+                    <mat-menu #usermenu="matMenu">
+                        <span>
+                            <button mat-menu-item>TEST</button>
+                        </span>
+                    </mat-menu>
+                </span>
+            </div>
+        </span>
+    </span>
+</div>

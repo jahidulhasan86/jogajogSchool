@@ -1,0 +1,614 @@
+.btnSchedule{
+    cursor: pointer;
+    border: 1px solid #ff4848;
+    color: #ff4848;
+    margin-left: 10px;
+    width: 165px;
+  }
+  
+  .btnLiveMeeting{
+    cursor: pointer;
+    border: 1px solid #ff4848;
+    background-color:  #ff4848;
+    color: white;
+    margin-left: 10px;
+    width: 165px;
+  }
+  
+  hr.hrule {
+    border-top: 1px solid #ffba09 !important;
+    width: 80vw;
+    margin-left: 27px;
+  }
+  
+  hr.l-box-hr{
+    /* // border-top: 1px solid #ffba09 !important; */
+    width: inherit;
+    /* // margin-left: 20px; */
+    /* // margin-top: 23px; */
+    box-shadow: 0px 1px 23px 1px rgba(138, 138, 138, 0.1);
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  hr.chat-box-hr{
+    width: inherit;
+    box-shadow: 0px 1px 23px 1px rgba(138, 138, 138, 0.1);
+  
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .l-box{
+    /* // min-height: 60vh; */
+    /* box-shadow: 0px 1px 23px 1px rgba(138, 138, 138, 0.1); */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
+    padding: 15px;
+    /* // overflow-y: auto; */
+    /* // width: 450px; */
+    transition: 1s;
+  }
+  
+  .l-box:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: 1s;
+  }
+  
+  .r-box{
+    /* //   margin-left: 25px; */
+    /* //   width: 630px; */
+    /* // overflow-y: auto; */
+  }
+  
+  .r-box.col-sm-12{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .room-name{
+    font-family: "PoplinsRegular";
+  }
+  
+  .host-name{
+    font-family: "PoplinsMedium";
+    margin-left: 5px;
+  }
+  
+  .chat-room-name{
+    font-family: "MontserratBold";
+    font-size: 19px;
+    display: block;
+    margin-top: 5px;
+  }
+  
+  .participant-name{
+    font-family: "MontserratBold";
+  }
+  
+  .participant-email,.contact{
+    font-family: "LatoRegular";
+  }
+  
+  .chat-room-sname{
+    color: #333333;
+    font-family: "MontserratRegular";
+  }
+  
+  .chat-box{
+    margin-top: 15px;
+    box-shadow: 0px 1px 23px 0px rgba(138, 138, 138, 0.1);
+    background-color: #ffffff;
+    height: 410px;
+  }
+  
+  .chat-box-header{
+    text-align: center;
+  }
+  
+  .container1{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .navbar-toggler{
+    z-index: 99999999999;
+    background-color: gold;
+    position: relative;
+    top: -85px;
+    left: 90%;
+  }
+  
+  #k{
+    z-index: 999999;
+    margin-left: 65%;
+    margin-top: -88px;
+    /* background-image: linear-gradient(to bottom, #f5cf1f, #f49823); */
+    background-color: rgb(0 0 0 / 27%);
+  }
+  
+  .btn-normal{
+    width: 163px;
+    height: 35px;
+    border-radius: 30px;
+    border: 1px solid #f49a22;
+    color: #f49a22;
+  }
+  
+  .btn-primary{
+    color: white !important;
+  }
+  
+  #chatBadge {
+    background-color: red;
+    color: white;
+    border-radius: 11px;
+    position: relative;
+    left: 97px;
+    top: 10px;
+    width: 25px;
+    text-align: center;
+  }
+  
+  .l-box::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .l-box {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .chat-box::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .chat-box {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  :host ::ng-deep .mat-badge {
+    position: unset;
+  }
+  
+  .selected-teacher{
+    background-color: #f3f3f3;
+    border: 1px solid #e8e1e1;
+    border-radius: 5px;
+    padding: 5px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) */
+  }
+  
+  .unSelected-teacher{
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: white; 
+  }
+  
+  .unSelected-teacher:hover {
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    /* transition: .5s; */
+  }
+  
+  .searchBar{
+    border-radius: 6px;
+    width: 65%;
+    background-color: #f0f0f3;
+    border: none;
+    padding: 4px;
+    margin-left: 6%;
+  }
+  
+  .listSearchInput {
+    width: 100%;
+    background-color: #f0f0f3;
+    border: none;
+    padding: 4px;
+    outline: none;
+  }
+  
+  .listSearchIcon{
+    color: #bdbdbd;
+    position: relative;
+    top: 3px;
+  }
+  
+  ::placeholder {
+    color: #f49a22;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #f49a22;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #f49a22;
+  }
+  
+  .heading{
+    color:#3598db;
+    line-height: 38px;
+    font-size: 20px;
+    font-family: MontserratSemiBold;
+  }
+
+  .recentChat {
+    margin: 0;
+    padding: 12px 10px;
+    cursor: pointer;
+  }
+  
+  .active_l2g_row {
+    background: white;
+    border-left: 4px solid #f4a422;
+  }
+  
+  .recentChat .profilePic {
+    width: 35px;
+    height: 35px;
+    border-radius: 32px;
+  }
+  
+  .recentChat .studentName {
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 95%;
+  }
+  
+  .recentChat .message {
+    font-size: 11px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 95%;
+    color: #656060;
+  }
+  
+  .recentChat .time {
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 158%;
+    left: -6px;
+    position: relative;
+  }
+  
+  
+  /* Search bar */
+  .search {
+    position: relative;
+    background: white;
+    padding: 9px 8px;
+    margin: 0px 10px;
+    border-radius: 5px;
+  }
+  
+  .search input {
+    text-indent: 10px;
+    width: 92%;
+    border: none;
+    color: #989695;
+  }
+  
+  .search input:focus {
+    outline-width: 0;
+  }
+  
+  .search .icon {
+    width: 10%;
+    position: absolute;
+    left: 3px;
+  }
+  
+  .search img {
+    width: 20px;
+    height: 20px
+  }
+  
+  .createNew {
+    text-align: right;
+  }
+  
+  /* Search bar */
+  
+  
+  .fill-space {
+    flex: 1 1 auto;
+  }
+  .statusicon{
+    top: 23px;
+      position: absolute;
+      left: 24px;
+      width: 13px;
+  }
+  mat-placeholder {
+    color: black
+  }
+  
+  .mat-expansion-panel-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px 0 0px;
+  }
+  
+  .mat-expansion-panel-header:hover {
+    background-color: #2b9284d9 !important;
+    color: white
+  }
+  
+  .mat-expansion-panel-body {
+    padding: 0px 10px 0px 0px !important;
+  }
+  
+  mat-nav-list {
+    padding-top: 0px !important;
+    overflow-y: hidden;
+  }
+  
+  .mat-nav-list .mat-list-item {
+    cursor: pointer;
+    outline: 0;
+    padding-left: 0px;
+    clear: both;
+  }
+  
+  .mat-menu-item {
+    height: 30px !important;
+    line-height: 0px
+  }
+  
+  /* .usr_action:hover {
+    background-color: #2b9284d9 !important;
+    color: white
+  } */
+  
+  .createNew mat-icon {
+    cursor: pointer;
+  }
+  
+  .createNew {
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: right;
+    margin-top: 2%;
+  }
+  
+  .test {
+    display: none;
+  }
+  
+  .removeMemberBtn {
+    color: red;
+  }
+  
+  .selectedn {
+    height: 70px !important;
+    border-bottom: 1px solid #B8D2D6;
+  }
+  
+  .chatuser {
+    /* font-size: 18px !important; */
+  }
+  
+  .chatuserbold {
+    font-weight: bold !important;
+    /* font-size: 18px !important; */
+    /* color: #00000a !important; */
+  }
+  
+  .groupName {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .groupOwnerName {
+    text-align: center;
+    float: right;
+    color: gray;
+  }
+  
+  .participateNo {
+    color: gray;
+    float: left;
+  }
+  
+  .loader {
+    position: fixed;
+    z-index: 9999;
+    top: 43%;
+    left: 45%;
+  }
+  
+  .dispalyShow {
+    display: block;
+  }
+  
+  .joinButton {
+    position: relative;
+    top: -46px;
+    float: right;
+    right: 7px;
+    font-size: 11px;
+    height: 27px;
+    background-color: white;
+    border: none;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    border-radius: 3px;
+    font-weight: 500;
+    color: black;
+  }
+  
+  .joinButton2 {
+    position: relative;
+    float: right;
+    right: 48%;
+    font-size: 11px;
+    height: 28px;
+    background-color: white;
+    border: none;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    border-radius: 2px;
+    font-weight: 500;
+    color: black;
+    margin-top: -34px;
+  }
+  
+  .inviteConference {
+    position: relative;
+    float: right;
+    width: 60px;
+    right: 24%;
+    font-size: 11px;
+    height: 28px;
+    background-color: white;
+    border: none;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    border-radius: 2px;
+    font-weight: 500;
+    color: black;
+    margin-top: -34px;
+  
+  }
+  
+  .mat-raised-button .mat-button-wrapper {
+    position: relative !important;
+    top: -3px !important;
+    left: -3px !important;
+  }
+  
+  .remove {
+    display: none;
+  }
+  
+  .dispalyOff {
+    display: none;
+  }
+  
+  .active-listItem {
+    background-color: #b3d0ccd9 !important;
+    color: white
+  }
+  
+  .mat-dialog-container {
+    padding-top: 0px !important;
+  }
+  
+  .addMemberBtn {
+    margin-top: 6px;
+    font-size: 13px;
+    padding-left: 0px;
+    padding-right: 4px;
+    border-radius: 8px;
+  }
+  
+  .mat-dialog-title {
+    text-align: center;
+    font-size: 1.6em;
+  }
+  
+  .avoid-click {
+    pointer-events: none;
+  }
+  
+  .matText {
+    font-size: 1em;
+    margin-left: -16px !important;
+  }
+  
+  .Notification-badge {
+    position: absolute;
+    background: #F95B49;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #EFF1F5;
+    border-radius: 21px;
+    top: 2px;
+    left: 3px;
+    padding-top: 6px;
+    font-size: 14px;
+    text-align: center;
+    color: white;
+  }
+  
+  .mat-tab-body-wrapper {
+    height: 0vh;
+  }
+  
+  .mat-tab-body-content {
+    height: 73vh !important;
+  }
+  
+  .invitationMediumRadio {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  }
+  
+  .animate-flicker {
+    animation: fadeIn 1s infinite alternate;
+  }
+  
+  .callLogUser {
+    margin-bottom: 0px;
+    width: 200%;
+    font-size: 14px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-weight: 500;
+    margin-left: 38px;
+  }
+  
+  .callLogTime {
+    margin-bottom: 0px;
+    width: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    box-sizing: border-box;
+    color: #000;
+    font-weight: 500;
+    margin-left: 38px;
+  }
+  
+  .flotingAddButton {
+    position: absolute !important;
+    left: 72%;
+    bottom: 10%;
+    z-index: 99999;
+  }
+  
+  .pinTopicColor {
+    background: #FBC02D !important;
+  }
+  
+  

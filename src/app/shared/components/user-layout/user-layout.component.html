@@ -1,0 +1,12 @@
+<div class="continer-fluid">
+    <div class="row" style="margin: 2%;">
+        <div class="l-box col-sm-12 col-md-12 col-xl-5" style="overflow-y: auto; height: 730px;">
+            <app-user-list [usersObj]="usersObj" (userEvtEmitter)="userEvtEmitter($event)"></app-user-list>
+        </div>
+
+        <div class="r-box col-sm-12 col-md-12 col-xl-7">
+            <app-chat-resource-layout
+             [people]="people"></app-chat-resource-layout>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<script src="https://j11y.io/demos/plugins/jQuery/autoresize.jquery.js"></script>
+<div id="fullpage" class="container" style="width: 98%;">
+  <div class="section" style="padding-top: 1%;">
+    <div class="panel">
+      <div class="panel-body" style="background-color: #F2F6FC;box-shadow: 3px 3px #EBEFF5;border-radius: 10px;">
+        <div class="row">
+          <div class="col-lg-4">
+            <span class="course-name" style="float: left;">Course: {{quiz.class_name}} {{quiz.subject_name}} {{quiz.name}}<br><span class="xm-name">Exam : {{quiz.exam_type_name}}</span><br><span class="teacher-name">Teacher : {{quiz.teacehr_name}}</span></span>
+          </div>
+          <div class="col-lg-4" style="text-align: center;">
+            <span class="course-name">Total Marks : {{quiz.score}}<br>
+              <span class="qprogress-name">Question Progress</span>
+              <br><span class="currentQ"> {{pager.index + filteredQuestions.length}}</span><span class="time-separator">/</span><span class="totalQ">{{pager.count}}</span>
+              </span>
+          </div>
+          <div class="col-lg-4">
+            <span class="course-name" style="float: right;">Exam Time: {{quiz.period_in_minute}} Minutes <br>
+              <span class="time-remaining" style="float: right;">Remaining</span><br>
+              <span class="elapsed-time" style="float: right;">{{ellapsedTime}}</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait</p></ngx-spinner>
+
+  <div class="q-container" *ngIf="mode=='quiz' && quiz" style="overflow-y: auto; max-height: 390px;overflow-x: hidden;">
+    <div *ngFor="let question of filteredQuestions; index as i">
+      <div class="row">
+        <div class="col-sm-10">
+          <h3 class="q-index">Question {{question.serial_no}} :
+            <span class="questiondesc" [innerHTML]="question.name"></span>
+          </h3>
+        </div>
+        <div class="col-sm-2">
+          <h3 class="q-index" style="color: red;">Marks :
+            <span class="questiondesc" style="color: red;" [innerHTML]="question.score"></span>
+          </h3>
+        </div>
+      </div>
+      
+      <div *ngIf="question.questionTypeId==='1'" class="row text-left options" style="margin-left: 1%;">
+        <div class="col-6" *ngFor="let option of question.options">
+          <div class="option">
+              <div class="radio-item">
+                <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);"  name="{{question.id}}" value="{{option.name}}">
+                <label for="{{option.id}}">{{option.order}}. <span class="opt-txt">{{option.name}} </span></label>
+            </div>
+              <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+          </div>
+        </div>
+        
+      </div>
+      <div *ngIf="question.questionTypeId==='2'" class="row text-left options" style="margin-left: 1%;">
+        <div class="col-lg-10">
+          <div class="option">
+              <div class="radio-item">
+               <span style="vertical-align: top;">Answer : </span> <textarea rows="2" placeholder="write answer here.." (blur)="onSelect(question,$event)" class="cinput"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top: 30px;">
+      <button class="btn btn-primary" *ngIf="config.allowBack" (click)="goTo(pager.index - pager.size);">PREVIOUS</button>
+      <button class="btn btn-default" (click)="pager.index + filteredQuestions.length!=pager.count?goTo(pager.index +  pager.size):onSubmit()">{{pager.index + filteredQuestions.length!=pager.count?'NEXT':'SUBMIT'}}</button>
+    </div>
+  </div>
+
+</div>

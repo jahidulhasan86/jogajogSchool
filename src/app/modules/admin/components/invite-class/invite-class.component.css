@@ -1,0 +1,20 @@
+.theamButton {
+    border: none;
+    /* background-image: linear-gradient(to right, #F5CD1F , #F49D23); */
+    border-radius: 3px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    /* padding: 8px 25px 9px 25px; */
+    padding: 0 5% 0 5%;
+    height: 35px;
+}
+
+.heading{
+    color: #F49A22;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    /* padding: 8px 35px 9px 35px */
+    padding: 0 5% 0 5%;
+}

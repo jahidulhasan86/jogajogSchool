@@ -1,0 +1,47 @@
+.admin-menu{
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: inline-block;
+}
+
+.userPanel {
+    text-align: center;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .userPanel img {
+    width: 30%;
+  }
+  .user_name {
+    font-size: 14px; 
+    padding-top: 3%
+  }
+  .user-role {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1px 5px 1px 5px; 
+    font-size: 12px;
+  }
+
+  .menuIcon {
+    width: 20px;
+    margin-right: 10%
+  }
+
+  .activeAdminMenu {
+    background-color: #F2F6FC !important;
+    color: #607D8B !important;
+  }
+
+.menu_list a {
+  font-size: 15px;
+  color: #fff;
+}
+
+.profileImg {
+  height: 62px;
+  width: 66px;
+  border-radius: 50%;
+}

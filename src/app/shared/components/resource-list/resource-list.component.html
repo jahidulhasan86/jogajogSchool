@@ -1,0 +1,79 @@
+<div class="col-md-12 col-sm-12 col-sm-12 col-xl-12">
+    <mat-list role="list">
+
+        <span *ngIf="currentTab !== 'recording'">
+            <span *ngFor="let file of resourceList | filterBy: fileFilter;">
+                <mat-list-item role="listitem" class="mat-list-item">
+
+                    <div style="width: 15%;">
+                        <i (click)="viewToNewTab(file)"><img title="Click for download" height="40" width="45"
+                                src="{{file.mimetype_img}}" style="left: 17px; cursor: pointer;" /></i>
+                    </div>
+
+                    <span class="separator">&nbsp;</span>
+
+                    <div title="Click for download" (click)="viewToNewTab(file)" style="cursor: pointer; width: 65%; text-align: left;
+                    padding-left: 3%;">
+                        {{file.shortname}}
+                    </div>
+
+                    <div style="width: 15%;">
+                        <i style="float: right;cursor: pointer;"> <img (click)="download(file)"
+                                title="Click for download" src="../../../../assets/images/Download.png" /></i>
+                    </div>
+
+                </mat-list-item>
+            </span>
+        </span>
+
+        <span *ngIf="currentTab === 'recording'">
+            <span *ngFor="let file of resourceList">
+                <mat-list-item role="listitem" class="mat-list-item">
+
+                    <div style="width: 15%;">
+                        <i (click)="viewToNewTab(file)"><img title="Click for download" height="40" width="45"
+                                src="../../../../assets/images/214-2149333_media-record-png-clip-art-recording-red-dot.png"
+                                style="left: 17px; cursor: pointer;" /></i>
+                    </div>
+
+                    <span class="separator">&nbsp;</span>
+
+                    <div title="{{file.name}}" (click)="viewToNewTab(file)" style="cursor: pointer; width: 45%; text-align: left;
+                    padding-left: 3%;">
+                        <p mat-line style="margin: 0;">
+                            {{file.name}}
+                        </p>
+                        <p mat-line style="font-size: 10px; margin: 0;">
+                            Recorded By: <b>{{ file.created_by }}</b>
+                        </p>
+                        <p mat-line style="font-size: 10px; margin: 0;">
+                            Start time: &nbsp; {{file.start_time | date:'medium'}}
+                        </p>
+                    </div>
+
+                    <div style="cursor: pointer; width: 20%; text-align: left;">
+                        <p mat-line style="margin: 0;">
+                            Duration
+                        </p>
+                        <p mat-line style="font-size: 10px; margin: 0;">
+                            {{file.duration}}
+                        </p>
+                    </div>
+
+                    <div style="width: 15%;">
+                        <button mat-icon-button #trigger=matMenuTrigger [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="playRecordedFile(file)">Play</button>
+                            <button mat-menu-item (click)="downloadRecordedFile(file)">Download</button>
+                        </mat-menu>
+                    </div>
+
+                </mat-list-item>
+            </span>
+        </span>
+
+    </mat-list>
+</div>

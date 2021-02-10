@@ -1,0 +1,12 @@
+<div class="continer-fluid" class="main">
+    <div class="row" style="padding: 2%;">
+        <div class="col-md-12 recording-header">
+           {{name}} Recording Playback
+        </div>
+        <div class="col-md-3 col-sm-6" *ngFor="let recordingFile of files">
+            <video controls autoplay height="" width="320">
+                <source [src]="recordingFile" type="video/webm">
+            </video>
+        </div>
+    </div>
+</div>

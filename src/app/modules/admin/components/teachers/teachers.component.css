@@ -1,0 +1,201 @@
+
+table {
+  width: 100%;
+}
+   
+.component_header {
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  
+.componentName{
+  color: #454954;
+  font-weight: 600;
+  font-size: 20px; 
+}
+
+input:focus {
+  outline: none !important;
+  border-color: #F4B520;
+}
+    
+select:focus {
+  outline: none !important;
+  border-color: #F4B520;
+}
+    
+textarea:focus {
+  outline: none !important;
+  border-color: #F4B520;
+}
+    
+.heading {
+    color: #F49A22;
+    font-weight: 500;
+    font-size: 20px;
+}
+    
+.addNewButton {
+    text-align: right
+}
+    
+.addNewButton button {
+    border: none;
+    /* padding: 10px 35px; */
+    padding: 2% 6%;
+    border-radius: 4px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+    
+.theamButton {
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    height: 38px;
+    width: 100px;
+    outline: 0
+}
+    
+.clearButton{
+    border: 1px solid #FAD6B5;
+    color: orange;
+    height: 38px;
+    width: 100px;
+    outline: 0
+}
+tr:nth-child(even) {
+    background-color: #F1F3F9;
+    }
+    
+.headerText{
+    font-size: 16px;
+    font-weight: 500;
+    color: #F49A22;
+}
+.table_item_heading{
+    font-weight: bold;
+    font-size: 14px;
+    color: #635b5b;
+    }
+.table-teacher-name{
+    font-weight: bold;
+    color: #635b5b;
+    }
+.edit_del_button {
+     width: 18px;
+}
+    
+
+    
+  
+    
+    @media  (max-width:991px){
+        /* .mr-top {
+              margin-top: 8px;
+              text-align: right;
+        } */
+        .edit_del_button {
+            width: 15px;
+        }
+    
+        .table_item_heading {
+          font-size: 11px;
+        }
+    
+        .table-class-name{
+            font-size: 11px;
+        }
+      .active_element {
+          padding-left: 11px;
+      }
+        /* .theamButton, .clearButton  {
+            width: 23%;
+        } */
+    
+    }
+    
+    
+    @media  (max-width:700px){
+        .mr-top {
+              margin-top: 8px;
+              text-align: right;
+        }
+        .table_item_heading{
+            font-size: 10px;
+        }
+        /* .table-class-name{
+            font-size: 11px;
+        } */
+        .componentName, .addNewButton {
+            text-align: center;
+        }
+        
+        .edit_del_button {
+            width: 13px;
+        }
+        .marginTop {
+             margin-top: 8px;
+        }
+    
+        .theamButton, .clearButton  {
+            width: 28%;
+        }
+    
+    }
+    
+    @media (min-width:422px) and (max-width:600px){
+       
+        .table_item_heading{
+            font-size: 8px;
+        }
+        .table-class-name{
+            font-size: 9px;
+        }
+        
+        .edit_del_button {
+            width: 11px;
+        }
+        /* .edit_del_button {
+            width: 13px;
+        }
+        .dept-name {
+            text-align: center;
+        } */
+    
+    }
+    @media (max-width:500px){ 
+        .margin-bottom {
+          margin-bottom: 4px;
+          font-size: 12px;
+        }
+      }
+      
+    
+    @media (max-width:421px){
+        .overflow_hide {
+            overflow: hidden;
+        }
+        .overflow-table {
+            overflow-x: scroll;
+        }
+        
+        .table_item_heading{
+            font-size: 14px;
+        }
+        .theamButton, .clearButton  {
+            width: 40%;
+        }
+    
+    }
+    
+    @media (max-width:340px){
+        .add-theamButton, .reset-close-btn {
+          padding: 0 3% 0 3%;
+        }
+    }
+    
+    

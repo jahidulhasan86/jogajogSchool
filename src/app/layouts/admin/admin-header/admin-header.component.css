@@ -1,0 +1,42 @@
+.header_left {
+    width: 15%;
+    padding: 12px 0;
+    margin: 0;
+    font-size: 15px;
+    background: #F4B520;
+    border-right: 1px solid white;
+  }
+  
+  .header_right {
+    width: 85%;
+    margin: 0;
+    font-size: 15px;
+  }
+  .toggle_sidenav {
+    width: 20%;
+    color: white;
+    outline: none;   
+    position: relative;   
+    top: -3px;
+  }
+  .logout-btn {
+    background: red;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    right: -15px;
+    padding: 21px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .instructor-btn {
+    color: white;
+    background: #F4B520;
+    outline: 0;
+    height: 64px;
+    border: none;
+    position: relative;
+    right: -15px;
+    padding: 0 4%;
+  }

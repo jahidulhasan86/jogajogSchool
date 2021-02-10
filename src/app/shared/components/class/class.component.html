@@ -1,0 +1,99 @@
+
+
+<div class="container-fluid">
+    <div class="row" style="padding-top: 2%;">
+        <div class="col-sm-12 col-md-12" style="padding-bottom: 1%;">
+            <div class="col-sm-12 col-md-12" style="padding-bottom: 2%;">
+                <div class="col-sm-10 col-md-10 heading-left">
+                    Subjects
+                </div>
+                <div class="col-sm-2 col-md-2 heading-right">
+                    <!-- All Subject -->
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12" style="text-align: center; font-size: 18px;" *ngIf="subjects.length == 0">
+                <span>No Subject found</span>
+            </div>
+            <!-- <div class="col-sm-12 col-md-12"> -->
+               
+            <div class="col-sm-6 col-md-4" style="margin-bottom: 10px;"
+                *ngFor="let subject of subjects | paginate: config">
+                <div class="card" style="border-radius: 18px 8px 8px 18px;">
+                    <mat-card class="example-card" (click)="loadExamBySubject(subject); loadChatResource(subject.id)"
+                        [ngClass]="subject.id != selected_subject ? 'class-card-not-start' : 'class-card-start-now'">
+                        <mat-card-content>
+                            <!-- <div style="text-align: right;">
+                                <img class="subject-img"
+                                    src="../../../../../assets/images/instructor-class/exam_list_icon_for_home_page.png">
+                            </div> -->
+                            <div class="row" style="margin-bottom:8%">
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 pt-10">
+                                    <div class="class-name">
+                                        {{subject.class_name}}
+                                    </div>
+                                    <div class="subject-name">{{subject.subject_name}}</div>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 text-right">
+                                    <img class="subject-img"
+                                        src="../../../../../assets/images/instructor-class/exam_list_icon_for_home_page.png">
+                                </div>
+                    
+                            </div>
+                            <div class="row">
+                               <!--  <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12"> -->
+                                   <!--  <button class="subject-btn btn-bg"(click)="showExams(subject)" >Exams</button>  &nbsp;
+                                    <button class="subject-btn btn-bg" (click)="Chat(subject.id)">Chat</button> &nbsp;  -->
+                                <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 text-center">
+                                    <button class="subject-btn" id="{{subject.id}}" (click)="goExamList(subject)" [ngClass]="subject.id != selectedSubject ? 'btn-not-select-bg' : 'btn-select-bg'">Exams</button>  &nbsp;
+                                    <button class="subject-btn btn-not-select-bg" (click)="doChat(subject)">Chat</button> &nbsp; 
+                                    <button class="subject-btn"
+                                        [ngStyle]="subject.conference_status == 'stop' ? {'background-image': 'linear-gradient(to top, #F49D23, #F5CD1F)'} : subject.conference_status == 'running' ? {'background-color': 'green'}: {}"
+                                        (click)="startClass(subject)">Call</button>
+                                    <!-- <button class="subject-btn"
+                                        [ngStyle]="subject.conference_status == 'stop' ? {'background-image': 'linear-gradient(to top, #F49D23, #F5CD1F)'} : subject.conference_status == 'running' ? {'background-color': 'green'}: {}"
+                                        (click)="startClass('leftCallBtn_' + subject.id)">Call</button> -->
+                                </div>
+
+                             </div> 
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+
+            <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+            <!-- </div> -->
+            <div class="col-sm-12" style="padding-top: 2%;" *ngIf="subjects.length > 3">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-3">
+                    <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+
+                        <div class="custom-pagination">
+                            <!-- <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                    <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> < </a>
+                </div> -->
+
+                            <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value"
+                                style="float: left; margin-right: 3%;">
+                                <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                                    <span style="cursor: pointer;" class="dot"></span>
+                                </a>
+                                <div *ngIf="p.getCurrent() === page.value">
+                                    <span class="dot-checked"></span>
+                                </div>
+                            </div>
+
+                            <!-- <div class="pagination-next" [class.disabled]="p.isLastPage()">
+                    <a *ngIf="!p.isLastPage()" (click)="p.next()"> > </a>
+                </div> -->
+                        </div>
+
+                    </pagination-template>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+            <app-teacher-exams #texam *ngIf="exam_list_view && teacherRole"[subject] ="sendSubject" ></app-teacher-exams>
+
+        </div>
+    </div>
+</div>
+<div *ngIf="exam_list_view && studentRole"><app-student-exam [sendSubject]=[sendSubject]></app-student-exam></div>

@@ -1,0 +1,32 @@
+.input-text {
+    width: 100%;
+    border: 1px solid #D6D9DE;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: white;
+    }
+  
+    .input-text-disabled {
+      width: 100%;
+      border: 1px solid #D6D9DE;
+      padding: 7px 10px;
+      border-radius: 3px;
+      background: #efecec;
+      }
+     
+   
+  
+    input:focus {
+      outline: none !important;
+      border-color: #F4B520;
+    }
+    
+    select:focus {
+      outline: none !important;
+      border-color: #F4B520;
+    }
+    
+    textarea:focus {
+      outline: none !important;
+      border-color: #F4B520;
+    }

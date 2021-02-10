@@ -1,0 +1,63 @@
+<div class="userPanel" style="padding-bottom: 5%;padding-top: 3%;">
+  <img class="profileImg" *ngIf="getSessionUserInfo().profile_pic == null"
+    src='../../../../assets/images/Default Profile.png' />
+  <img class="profileImg" *ngIf="getSessionUserInfo().profile_pic != null" src="{{getSessionUserInfo().profile_pic}}"
+    alt="profile-pic">
+
+
+  <div style="height: 50%;">
+    <span [matMenuTriggerFor]="onlineStatusMenu" class="cursor">
+      <img name="MyImage" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" src="{{imgSrc}}" class="statusIcon" />
+      <span style="font-size: 11px;top:-14px;position: relative;display: none;" (mouseover)="onMouseOver()"
+        (mouseout)="onMouseOut()">
+        {{currentStatusName}}
+      </span>
+    </span>
+
+    <span flex>
+      <mat-menu #onlineStatusMenu="matMenu" yPosition="below" [overlapTrigger]="false" class="cursor">
+        <div style="width: 200px;">
+          <button (click)="setSessionUserPresence(onlineStatusXmpp.online)" mat-menu-item>
+            <img *ngIf="currentUser.statusName == onlineStatusDisplay.online" src="{{tickImageUrl}}"
+              style="position: absolute;left: 7px; width: 15px; top: 19px;" />
+            <span style="position: relative; top:5px;right: -40px;">
+              <img src="../../../../assets/images/chat-status/status_green.png"
+                style="position: absolute; top:1px;left:-20px;width: 13px;" />
+              {{onlineStatusDisplay.online}}</span>
+          </button>
+          <button (click)="setSessionUserPresence(onlineStatusXmpp.away)" mat-menu-item>
+            <img *ngIf="currentUser.statusName == onlineStatusDisplay.away" src="{{tickImageUrl}}"
+              style="position: absolute;left: 7px;width: 15px; top: 19px;" />
+            <span style="position: relative; top:5px;right: -40px;">
+              <img src="../../../../assets/images/chat-status/Circle_Yellow.png"
+                style="position: absolute; top:1px;left:-20px;width: 13px;" />
+              {{onlineStatusDisplay.away}}</span>
+          </button>
+          <button (click)="setSessionUserPresence(onlineStatusXmpp.busy)" mat-menu-item>
+            <img *ngIf="currentUser.statusName == onlineStatusDisplay.busy" src="{{tickImageUrl}}"
+              style="position: absolute;left: 7px; width: 15px; top: 19px;" />
+            <span style="position: relative; top:5px;right: -40px;">
+              <img src="../../../../assets/images/chat-status/Circle_Red.png"
+                style="position: absolute; top:1px;left:-20px;width: 13px;" />
+              {{onlineStatusDisplay.busy}}</span>
+          </button>
+          <button (click)="setSessionUserPresence(onlineStatusXmpp.invisible)" mat-menu-item>
+            <img *ngIf="currentUser.statusName == onlineStatusDisplay.invisible" src="{{tickImageUrl}}"
+              style="position: absolute;left: 7px; width: 15px; top: 19px;" />
+            <span style="position: relative; top:5px;right: -40px;">
+              <img src="../../../../assets/images/chat-status/status_ash.png"
+                style="position: absolute; top:1px;left:-20px;width: 13px;" />
+              {{onlineStatusDisplay.invisible}}</span>
+          </button>
+        </div>
+
+      </mat-menu>
+    </span>
+
+  </div>
+
+  <div class="userName">
+    <div class="user_name"> Welcome, {{getSessionUserInfo().first_name + ' ' + getSessionUserInfo().last_name}}</div>
+    <div style="padding-top: 3%;"><span class="user-role">{{isTecherRole?'Instructor':'Student'}}</span></div>
+  </div>
+</div>

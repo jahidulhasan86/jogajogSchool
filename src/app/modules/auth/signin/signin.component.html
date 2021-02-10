@@ -1,0 +1,73 @@
+<div class="mainPart">
+ <div class="container-fluid">
+  <div class="row" style="margin-left:4%; padding-top:2%">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <img style="width:5%;" src="{{L2TogetherLogoUrl}}" alt="LogoImage">
+    </div>
+    <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h3 class="left-heading-text" style="color: #515C6F; font-weight: 700;">Jogajog School</h3>
+      <h3 class="left-heading-text">Onestop Learning Platform</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      <img class="login-vector-image" src="{{loginSignUpVectorImageUrl}}">
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6" style="padding-top: 6x;">
+        <h3 class="right-heading-text" style="color: #515C6F;font-weight: 600;">Welcome</h3>
+        <h3 class="right-heading-text">Login to Continue</h3>
+     
+      <form action="" [formGroup]="registerForm">
+        <div class="panel-body">
+          <div style="width: 100%">
+            <span style="position: absolute;">
+              <img class="imageIcon" src="{{userIconUrl}}" alt="userIconImage">
+            </span>
+            <input type="text" formControlName="user_name" name="user_name" id="user_name" class="form-control input-sm" placeholder="USERNAME"
+              [(ngModel)]="model.user_name" required>
+              <div *ngIf="submitted && f.user_name.errors" style="width: 100%;
+              margin-top: .25rem;
+              font-size: 80%;
+              color: #dc3545">
+                <div>Username is required</div>
+            </div>
+          </div>
+
+          <div style="width: 100%; margin-top: 10px">
+            <span style="position: absolute;">
+              <img class="imageIcon" src="{{passwordIconUrl}}" alt="passIconImage">
+            </span>
+            <span (click)="passwordToggle()" class="password_toggle" title="Show password">
+              <img style="width: 25px" id="hide" src="{{passwordShowIconUrl}}">
+              <img style="width: 25px" id="show" src="../../../assets/images/lg/Login/passVisible.png">
+            </span>
+            <input style="padding-right:10%" type="password" formControlName="password" name="password" id="password" class="form-control input-sm"
+              placeholder="PASSWORD" [(ngModel)]="model.password" required>
+
+             
+            </div>
+            
+          <div>
+            <span class="forgot-password">Forgot Password ? </span>
+          </div>
+          <div  style="width: 100%;
+          margin-top: .25rem;
+          font-size: 80%;
+          color: #dc3545" *ngIf="submitted && f.password.errors">
+            <div >Password is required</div>
+            
+        </div>
+          <div class="login_part">
+            <div style="text-align: center;margin-top: 55px;">
+              <button class="login_Btn" type="submit" (click)="login()"
+                >
+                LOGIN</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+ </div>
+</div>

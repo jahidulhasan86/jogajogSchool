@@ -1,0 +1,245 @@
+.exam-setup-header {
+    padding: 20px 0px;
+    border-bottom: 2px solid #D6D9DE;
+    margin-bottom: 20px;
+    }
+    
+    
+    .setup-exam-form {
+    font-size: 14px;
+    color: #8c8784;
+    font-weight: 600;
+    }
+    
+    .setup-text {
+    font-size: 16px;
+    font-weight: 600;
+    }
+    
+    .input-text {
+    width: 100%;
+    border: 1px solid #D6D9DE;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: white;
+    }
+    
+    .input-text2 {
+    width: 90%;
+    border: 1px solid #D6D9DE;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: white;
+    }
+    
+    .margin-bottom {
+    margin-bottom: 13px;
+    }
+    
+    input:focus {
+    outline: none !important;
+    border-color: #F4B520;
+    }
+    
+    select:focus {
+    outline: none !important;
+    border-color: #F4B520;
+    }
+    
+    textarea:focus {
+    outline: none !important;
+    border-color: #F4B520;
+    }
+    
+    .btn-default {
+    color: #F49D23;
+    background-color: #FFFFFF;
+    border-color: #F49D23;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 500;
+    
+    }
+    .text_center {
+      text-align: center;
+    }
+    
+    .theamButton {
+    border: none;
+    /* background-image: linear-gradient(to bottom, #F5CD1F, #F49D23); */
+    padding: 10px 40px;
+    border-radius: 2px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    }
+    
+    .arrow_left {
+    width: 25px;
+    position: absolute;
+    transform: rotate(180deg);
+    left: -26px;
+    top: 28px;
+    cursor: pointer;
+    }
+    
+    
+    .questionNo {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 13px;
+    }
+    
+    .question-input {
+    margin-bottom: 20px;
+    width: 100%;
+    }
+    
+    
+    .radio-item {
+    display: inline-block;
+    position: relative;
+    padding: 0 6px;
+    margin: 10px 0 0;
+    width: 100%
+    }
+    
+    .radio-item input[type='radio'] {
+    display: none;
+    }
+    
+    .radio-item label {
+    color: #666;
+    font-weight: normal;
+    }
+    
+    .radio-item label:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin: 0 5px 0 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid #F49D23;
+    background-color: transparent;
+    }
+    
+    .radio-item input[type=radio]:checked+label:after {
+    border-radius: 11px;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 11.5px;
+    left: 10px;
+    content: " ";
+    display: block;
+    background: #F49D23;
+    }
+    
+    
+    .input-text-disabled {
+    width: 100%;
+    border: 1px solid #D6D9DE;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: #efecec;
+    }
+    
+    /* .tab-default {
+    text-align: center;
+    padding: 10px;
+    width: 130px;
+    color: white;
+    background-image: linear-gradient(to top, #F49D23, #F5CD1F);
+    cursor: pointer;
+    
+    }
+    
+    .tab-active {
+    text-align: center;
+    padding: 10px;
+    width: 130px;
+    color: #F49D23;
+    background-image: white;
+    cursor: pointer;
+    } */
+    
+    .tab-default {
+    text-align: center;
+    padding: 10px;
+    width: 130px;
+    color: #F49D23;
+    background-image: white;
+    cursor: pointer;
+    }
+    
+    .tab-active {
+    text-align: center;
+    padding: 10px;
+    width: 130px;
+    color: white;
+    background-image: linear-gradient(to top, #F49D23, #F5CD1F);
+    cursor: pointer;
+    }
+    .button_margin {
+      margin: 4px;
+    }
+    @media (max-width:600px){ 
+      .margin-bottom {
+        font-size: 12px;
+      }
+      .setup-exam-btn {
+        text-align: center;
+      }
+    }
+    
+    @media (max-width:500px){ 
+      .margin-bottom {
+        margin-bottom: 4px;
+      }
+      .next-sub-btn {
+        padding: 10px 22px;
+      }
+      .reset-btn {
+     padding: 10px 18px;
+      }
+    }
+    @media (max-width:767px){
+      .text_center {
+        text-align: left;
+        margin-bottom: 5px;
+      }
+      .questionNo {
+        margin-bottom: 5px;
+        }
+        
+        .question-input {
+        margin-bottom: 0px;
+        }
+    }
+    
+    @media (min-width:900px) and (max-width:1200px) {
+      .input-text2 {
+        width: 84%;
+        border: 1px solid #D6D9DE;
+        padding: 7px 10px;
+        border-radius: 3px;
+        background: white;
+        }
+    }
+    
+    @media (min-width:768px) and (max-width:899px){
+      .input-text2 {
+        width: 78%;
+        }
+    }
+    
+    @media (max-width:680px){
+      .input-text2 {
+        width: 81%;
+        }
+    }
+    

@@ -1,0 +1,223 @@
+
+  .heading {
+    color: #F4B520;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+  .box-header{
+    font-size: 18px;
+    font-weight:500;
+    color:#4D4D4D;
+    }
+
+    input:focus {
+    outline: none !important;
+    border-color: #F4B520;
+    }
+    
+    select:focus {
+    outline: none !important;
+    border-color: #F4B520;
+    }
+    
+    textarea:focus {
+    outline: none !important;
+    border-color: #F4B520;
+    }
+    
+ 
+    
+    .loader{
+    position: absolute;
+    text-align: center;
+    right: 50%;
+    top: 50%;
+    }
+    
+    .uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #F49D23
+    }
+    
+    .theamButton {
+    border: none;
+    /* background-image: linear-gradient(to right, #F5CD1F , #F49D23); */
+    /* padding: 8px 10px; */
+    border-radius: 4px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    height: 35px;
+    width: 47%;
+    /* top: -5px;
+    position: relative; */
+    
+    }
+    /* button:focus {outline:0;} */
+    
+   
+    .add-theamButton{
+    border: none;
+    /* background-image: linear-gradient(to right, #F5CD1F , #F49D23); */
+    border-radius: 3px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 5% 0 5%;
+    height: 35px;
+    }
+    .reset-close-btn {
+        border: 2px solid #FAD6B5;
+        color:orange; 
+        padding: 0 5% 0 5%;
+        height: 35px;
+        background: white;
+    }
+  
+
+    
+    .input-text {
+    width: 100%;
+    border: 1px solid #D6D9DE;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: white;
+    }
+    
+    /* .mainRow{
+    margin-bottom: 18px;
+    } */
+    
+    .margin-bottom {
+        margin-bottom: 13px;
+       }
+    
+    /* .margin_top{
+    margin-top: 9px;
+    } */
+    
+  
+    
+  
+    
+    .edit_del_button {
+        width: 18px;
+    }
+    
+    .textarea-class{
+        min-height: 96px;
+        font-size: 13px;
+        }
+    
+        @media  (max-width:991px){
+            .mr-top {
+                  margin-top: 8px;
+                  text-align: right;
+                  margin-bottom: 8px;
+            }
+            .table-class-name{
+                font-size: 10px;
+                /* text-align: center; */
+            }
+            
+        
+            .table_item_heading {
+              font-size: 12px;
+            }
+        
+            .theamButton, .clearButton  {
+                width: 23%;
+            }
+    
+            .edit-del-btn {
+                text-align: center !important;
+            }
+            .action_align {
+                padding-left: 2%;
+            }
+        
+        }
+    
+        @media  (max-width:700px){
+            .mr-top {
+                  margin-top: 8px;
+            }
+            .table_item_heading{
+                font-size: 11px;
+            }
+            /* .table-class-name{
+                font-size: 10px;
+            }
+             */
+             .componentName, .addNewButton {
+                text-align: center;
+            }
+    
+            .edit_del_button {
+                width: 16px;
+            }
+            .marginTop {
+                 margin-top: 8px;
+            }
+        
+            .theamButton, .clearButton  {
+                width: 33%;
+            }
+        
+        }
+        @media (max-width:600px){ 
+            .margin-bottom {
+              font-size: 12px;
+            }
+          }
+          
+        
+        @media (max-width:500px){
+            
+            .edit_del_button {
+                width: 13px;
+            }
+            .dept-name {
+                text-align: center;
+            }
+            .margin-bottom {
+                margin-bottom: 4px;
+              }
+        }
+      
+    
+        @media (min-width:345px) and (max-width:410px){
+            .table-class-name{
+                font-size: 8px;
+                /* text-align: center; */
+            }
+            
+        
+            .table_item_heading {
+              font-size: 8px;
+            }
+        }
+    
+        @media(max-width:344px){
+            .overflow_hide {
+                overflow: hidden;
+            }
+            .overflow-table {
+                overflow-x: scroll;
+            }
+            .table-width {
+                width: 568px;
+            }
+            .theamButton, .reset-close-btn {
+                padding: 0 3% 0 3%;
+              }
+              .theamButton, .clearButton  {
+                width: 36%;
+            }
+        }
+     /* @media (max-width:350px){
+          .theamButton, .reset-close-btn {
+            padding: 0 3% 0 3%;
+          }
+      } */
+    

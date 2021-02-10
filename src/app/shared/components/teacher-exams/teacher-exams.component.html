@@ -1,0 +1,218 @@
+<div style="background:#F1F5FB" id="fullpage" class="container" style="width: 95%; overflow: auto;padding-bottom: 2%;"
+  [ngSwitch]="switchToviewStr">
+  <div class="section" style="padding-top: 1%;">
+    <!-- Common Part Start -->
+   <div class="row">
+    <div class="col-sm-6" style="font-size: 18px;">All Exam Information <span style="font-size: 13px;"> {{subject_name}}</span></div>
+    <div class="col-sm-6" style="text-align: right;">
+      <button (click)="goToView()" title="Go to Exam Activity Panel" class="setup_exam">Setup Exam</button>
+    </div>
+   </div>
+   <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">LOADING</p></ngx-spinner>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination ">
+        <li class="page-item"><a
+            style="border-radius: 21px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+            class="page-link tab-active" (click)="switchToview('my_exams'); _activeClick($event);">My Exams</a></li>
+        <!-- <li class="page-item"><a style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+            class="page-link tab-default" (click)="switchToExamActivity('exam_setup'); _activeClick($event);">Exam
+            Setup</a></li> -->
+        <li class="page-item"><a style="border-radius: 21px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
+            class="page-link tab-default" id='stdAttendExam'
+            (click)="switchToview('answer_papers'); _activeClick($event);">Answer
+            Papers</a></li>
+      </ul>
+    </nav>
+   
+    <!-- Common Part End -->
+    <!-- My Exam -->
+    <div class="row" *ngSwitchCase="'my_exams'">
+      <div class="col-sm-12">
+        <div id='teacher_exam_list'>
+
+          
+          <div class="todays-xm">
+            <h5><b>Today's</b> Exam</h5>
+            <div class="xm-box today" *ngIf='todayExamList.length == 0'>
+              No exams are there or loaded yet.
+            </div>
+            <div class="examBoxStyle" *ngIf='todayExamList.length > 0'>
+              <div class="row" *ngFor="let exam of todayExamList; index as i" style="margin: 10px;">
+                <div class="col-sm-10" style="padding: 7px;">
+                  <div class="col-sm-1" scope="row">
+                    <i style="border-radius: 50%;">
+                      <img class="imgStyle" src="../../../../assets/images/lg/new_res/header/exam_list_icon.png">
+                    </i>
+                  </div>
+                  <div class="col-sm-4">{{exam.name}}<br>
+                    <span
+                      class="instructor-name">{{exam.start_time | date:' hh:mm a '}}-{{exam.end_time | date:' hh:mm a'}}
+                    </span>
+                  </div>
+                  <div class="col-sm-2"> {{exam.exam_type_name}}<br>
+                    <!-- <span class="instructor-name">{{exam.teacehr_name}}</span> -->
+                  </div>
+                  <div class="col-sm-2">Total Marks<br>
+                    <span class="instructor-name">{{exam.score}}</span>
+                  </div>
+                  <div class="col-sm-3">
+                    {{exam.exam_date | date:'dd'}}&nbsp;{{exam.exam_date | date:'MMMM'}}&nbsp;{{exam.exam_date | date:'yyyy'}}
+                    <br><span class="instructor-name">{{exam.day_of_week}}</span>
+                  </div>
+                </div>
+                <div class="col-sm-2" style="margin-top: 13px;">
+                  <div *ngIf='exam.set_of_questions && exam.set_of_questions.length > 0 && !exam.is_started_for_stds'
+                    (click)="startNowExam(exam)" class="red_btn">
+                    Start Now
+                  </div>
+                  <div *ngIf='exam.set_of_questions && exam.set_of_questions.length > 0 && exam.is_started_for_stds'
+                    class="green_btn">
+                    Started
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+
+          </div>
+          <div class="all-xm">
+            <h5><b>Upcoming Exam</b> Status</h5>
+            <div class="xm-box" *ngIf='allUpcommingList.length == 0'>
+              No exams are there or loaded yet.
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="examBoxStyle" *ngIf='allUpcommingList.length > 0'>
+                  <div class="row" *ngFor="let exam of allUpcommingList; index as i" style="margin: 10px;">
+                    <div class="col-sm-10" style="padding: 7px;">
+                      <div class="col-sm-1" scope="row">
+                        <i style="border-radius: 50%;">
+                          <img class="imgStyle" src="../../../../assets/images/lg/new_res/header/exam_list_icon.png">
+                        </i>
+                      </div>
+                      <div class="col-sm-4">{{exam.name}}<br>
+                        <span
+                          class="instructor-name">{{exam.start_time | date:' hh:mm a '}}-{{exam.end_time | date:' hh:mm a'}}
+                        </span>
+                      </div>
+                      <div class="col-sm-2">{{exam.exam_type_name}}<br>
+                        <!-- <span class="instructor-name">{{exam.teacehr_name}}</span> -->
+                      </div>
+                      <div class="col-sm-2">Total Marks<br>
+                        <span class="instructor-name">{{exam.score}}</span>
+                      </div>
+                      <div class="col-sm-3">
+                        {{exam.exam_date | date:'dd'}}&nbsp;{{exam.exam_date | date:'MMMM'}}&nbsp;{{exam.exam_date | date:'yyyy'}}
+                        <br><span class="instructor-name">{{exam.day_of_week}}</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-2" style="margin-top: 13px;">
+                      <div *ngIf='exam.set_of_questions && exam.set_of_questions.length > 0'
+                        (click)="navigateToTargetViewMode('TeacherViewExam',exam)" class="green_btn">
+                        Questions
+                      </div>
+                      <div *ngIf='!exam.set_of_questions || exam.set_of_questions.length == 0'
+                        title="No questions are set yet" class="red_btn">
+                        No Questions
+                      </div>
+                    </div>
+
+                                    </div>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Answer Papers -->
+    <div class="row" *ngSwitchCase="'answer_papers'">
+      <div class="col-sm-12">
+        <div id='answer_papers_list'>
+
+          <div class="row" style="margin-top: 19px;">
+            <div class="col-sm-3 margin-bottom">
+              Exam
+            </div>
+
+            
+            <div class="col-sm-3 margin-bottom">
+              <select class="input-text" [(ngModel)]="selectedExam" (change)="examSelector(selectedExam)">
+                <option *ngFor="let exam of allExamListForDropDown" [ngValue]="exam">{{exam.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div *ngIf="selectedExam.id != '0'" class="exam-info">
+            <div class="exam-name">{{selectedExam.name}}</div>
+            <div class="exam-note">Choose any student sheet for marking their answer script</div>
+          </div>
+
+          <div class="studentList_answerpaper" style="padding: 10px 0px 0px 0;">
+            <div class="xm-box" *ngIf='attendedInExamlist.length == 0' style="overflow-y: auto;">
+              Students are not attended in this exam.
+            </div>
+            <div class="row" style="margin: 0;" *ngFor="let std of attendedInExamlist; index as i;let e = even;let o = odd">
+              <div [ngClass]="{odditem:o,evenitem:e}" class="col-sm-10 examBoxStyle"
+                *ngIf='attendedInExamlist.length > 0'>
+                <div class="row" style="margin: 9px;">
+                  <div class="col-sm-12" style="padding: 2px;">
+                    <div class="col-sm-1" scope="row">
+                      <i style="border-radius: 50%;">
+                        <img *ngIf="std.profile_pic" class="imgStyleForAttndStd"
+                          src="{{globalValue.profilePhotoUrl}}{{std.profile_pic}}">
+                        <img *ngIf="!std.profile_pic" class="imgStyleForAttndStd"
+                          src="../../../../assets/images/default_profile icon.png">
+                      </i>
+                    </div>
+                    <div class="col-sm-4" style="font-size: 14px;font-weight: bold;padding-top: 7px;">
+                      {{std.student_name}}
+                    </div>
+                    <div class="col-sm-3 instructor-name" style="text-align: center;">Submission Time
+                      <br><span class="instructor-name"> {{std.exam_attended_date | date:'d MMM, y | hh:mm a'}}</span>
+                    </div>
+                    <div class="col-sm-4" style="font-size: 12px;text-align: right;color: #808080db;">
+                      <span>Marks Obtained</span>
+                      <br><span *ngIf='!std.is_scored && !std.is_reviewed'><span
+                          style="color:red;font-weight: bold;font-size: 16px;">Not Checked</span></span>
+                      <span *ngIf='std.is_scored || std.is_reviewed' style="font-size: 20px;margin-right: 16px;"><span
+                          style="color:#4aaf4e">{{std.obtained_score}}</span><span
+                          style="color:red;">/{{attendedInExamObj.score}}</span></span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-2" style="margin-top: 17px;">
+                <div *ngIf='!std.is_scored && !std.is_reviewed' (click)="loadAnswerAndScoreExams(std)" class="red_btn">
+                  Check
+                </div>
+                <div *ngIf='std.is_scored && !std.is_reviewed' (click)="loadAnswerAndScoreExamsForReview(std)"
+                  class="green_btn">
+                  Review
+                </div>
+                <div *ngIf='std.is_scored && std.is_reviewed' class="ash_btn">
+                  Reviewed
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="col-sm-12" style="text-align: center;margin-top: 10px;">
+              <button class="theamButton" *ngIf='!is_result_published && attendedInExamlist.length > 0'
+                (click)="publish_result()">PUBLISH</button>
+              <button class="theamdisabledButton"
+                *ngIf='is_result_published  && attendedInExamlist.length > 0'>PUBLISHED</button>
+            </div>
+            <div class="exam-note"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

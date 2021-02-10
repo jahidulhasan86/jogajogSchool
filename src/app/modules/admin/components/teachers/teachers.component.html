@@ -1,0 +1,97 @@
+<div class="container-fluid overflow_hide">
+    <div class="row component_header">
+        <div class="col-sm-6 componentName">
+            All Teacher Information
+        </div>
+        <div class="col-sm-6 addNewButton">
+            <button class="l2gTheamButtonColor" (click)="addTeacherDialog()">Add New Teacher</button>
+        </div>
+    </div>
+    <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+    <mat-card class="example-card"
+        style="border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+
+        <mat-card-content>
+            <div class="row mobile_view" style="padding-bottom: 1%;">
+                <!-- <div class="col-md-2 col-sm-2">
+              <div class="headerText">Instructors</div>
+            </div> -->
+                <div class="col-sm-7">
+                    <app-branch-dept (sendDept)="deptReceived($event)" [component_name]="component_name_for_child"
+                        [optionReset]="optionReset">
+                    </app-branch-dept>
+                </div>
+                <div class="col-sm-5  mr-top text-right">
+                    <button mat-button class="theamButton l2gTheamButtonColor" (click)="filterSearchSubmit()">FIND
+                        NOW</button>
+                    &nbsp;
+                    <button mat-button class="clearButton" (click)="resetField()">CLEAR</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="overflow-table" style="width: 100%;">
+                    <table mat-table [dataSource]="dataSource" matSort matSortActive="created">
+
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_item_heading"> SL NO.
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="table-class-name"> {{element.position}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_item_heading">FULL NAME
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="table-teacher-name table-class-name">
+                                {{element.user_name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="dept_name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_item_heading"> DEPARTMENT
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="table-class-name"> {{element.dept_name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="branch_name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_item_heading"> BRANCE
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="table-class-name"> {{element.branch_name}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="created">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_item_heading"> CREATED AT
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="table-class-name"> {{element.created | date:
+                                'd/M/y, h:mm a'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="active">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_item_heading"> ACTIVE
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="table-class-name active_element">
+                                {{element.is_active}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef class="table_item_heading"> ACTION </th>
+                            <td mat-cell *matCellDef="let element" class="table-class-name">
+                                <img matTooltip="Edit" class="edit_del_button"
+                                    src="../../../../../assets/images/admin/class/Edit Icon.png" alt="">
+                                &nbsp;
+                                <img matTooltip="Delete" class="edit_del_button"
+                                    src="../../../../../assets/images/admin/class/Delete Icon.png" alt="">
+                            </td>
+                        </ng-container>
+
+                        <tr style="background:#F1F3F9;" mat-header-row
+                            *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </div>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        </mat-card-content>
+    </mat-card>
+</div>

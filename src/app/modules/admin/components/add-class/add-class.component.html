@@ -1,0 +1,67 @@
+<mat-card class="example-card">
+
+  <mat-card-header style="margin-bottom: 10px;">
+    <div class="heading" style="width: 100%;">ADD NEW CLASS</div>
+  </mat-card-header>
+
+  <mat-card-content style="background: #F1F3F9">
+    <div class="add_class_maindiv">
+      <div class="box-header">General Information</div>
+      <div style="font-size:14px;color:#4D4D4D; margin-bottom:15px">Please enter new class details below </div>
+
+      <div class="row">
+        <div class="col-sm-3 margin-bottom ">
+          Class Name
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <input style="font-weight:500;" type='text' class="input-text" [(ngModel)]="classModel.name" />
+        </div>
+      </div>
+
+      <div class="margin-bottom">
+        <app-branch-dept (sendDept)="deptReceived($event)" [component_name]="component_name_for_child" [optionReset]="optionReset"></app-branch-dept>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 margin-bottom ">
+          Time Zone
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <select class="input-text" [(ngModel)]="classModel.timezone">
+            <option value="Asia/Dhaka">
+              Asia/Dhaka
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 margin-bottom ">
+          Start time
+        </div>
+        <div class="col-sm-3 margin-bottom">
+          <input #startTime placeholder="Start time" class="input-text" aria-label="12hr format" style="width: 100%;"
+            [ngxTimepicker]="default" readonly>
+          <ngx-material-timepicker #default (timeSet)="timeSelector($event, 'start_time')"></ngx-material-timepicker>
+        </div>
+
+        <div class="col-sm-3 margin-bottom ">
+          End time
+        </div>
+        <div class="col-sm-3 margin-bottom">
+          <input #endTime placeholder="End time" class="input-text" aria-label="12hr format" style="width: 100%;"
+            [ngxTimepicker]="fullTime" [format]="12" readonly>
+          <ngx-material-timepicker #fullTime (timeSet)="timeSelector($event, 'end_time')"></ngx-material-timepicker>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions style="text-align: center; padding-bottom: 2%; padding-top: 3%;">
+    <button style="color: white;" class="theamButton l2gTheamButtonColor"
+      [disabled]="!classModel.name || !classModel.dept_id || !classModel.start_time || !classModel.end_time || !classModel.timezone"
+      (click)="insertClass()">SUBMIT</button> &nbsp;
+    <button class="reset-close-btn" (click)="resetField()">RESET</button> &nbsp;
+    <button class="reset-close-btn" (click)="closeDialog()">CLOSE</button>
+  </mat-card-actions>
+</mat-card>

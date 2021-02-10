@@ -1,0 +1,236 @@
+<div id="fullpage" class="container" style="width: 95%;overflow: auto;padding-bottom: 8%;">
+  <div class="section" style="padding-top: 1%;">
+    <span style="font-size: 18px;">Exam Information</span>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination ">
+        <li class="page-item"><a id="std-exam-list"
+            style="border-radius: 21px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+            class="page-link tab-active" (click)="loadExams();_activeClick($event);">My Exams</a></li>
+        <!-- <li class="page-item"><a style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+              class="page-link tab-default" (click)="switchToExamActivity('exam_setup'); _activeClick($event);">Exam
+              Setup</a></li> -->
+        <li class="page-item"><a id='examHist'
+            style="border-radius: 21px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
+            class="page-link tab-default" (click)="loadAnswerExams();_activeClick($event);">Exam History</a></li>
+      </ul>
+    </nav>
+    <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">LOADING</p></ngx-spinner>
+    <div id='my_exam'>
+      <div class="todays-xm">
+        <h5><b>Today's</b> Exam</h5>
+        <div class="xm-box today" *ngIf='todayExamList.length == 0'>
+          No exams are there for today.
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="examBoxStyle" *ngIf='todayExamList.length > 0'>
+              <div class="row" *ngFor="let exam of todayExamList; index as i" style="margin: 10px;">
+                <div class="col-sm-10" style="padding: 7px;">
+                  <div class="col-sm-1" scope="row">
+                    <i style="border-radius: 50%;">
+                      <img class="imgStyle" src="../../../../assets/images/lg/new_res/header/exam_list_icon.png">
+                    </i>
+                  </div>
+                  <div class="col-sm-3">
+                    {{exam.subject_name}}<br><span class="instructor-name">Total marks : {{exam.score}}</span>
+                  </div>
+                  <div class="col-sm-2">
+                    Instructor<br><span class="instructor-name">{{exam.teacehr_name}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    {{exam.exam_type_name}}->{{exam.name}}<br><span class="instructor-name">{{exam.start_time | date:'
+                      hh:mm
+                      a
+                      '}}-{{exam.end_time | date:' hh:mm a'}}</span>
+                  </div>
+                  <div class="col-sm-2">
+                    {{exam.exam_date | date:'dd'}}&nbsp;{{exam.exam_date | date:'MMMM'}}&nbsp;{{exam.exam_date |
+                    date:'yyyy'}}
+                    <br><span class="instructor-name">{{exam.day_of_week}}</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 text-right" style="margin-top: 13px;">
+                  <span *ngIf="exam.status == 'Done' " class="btn btn-success">
+                    {{exam.status}}
+                  </span>
+                  <span *ngIf="exam.status == 'Pending' " class="btn btn-warning">
+                    {{exam.status}}
+                  </span>
+                  <span *ngIf="exam.status == 'Ongoing' " (click)="navigateToTarget('live-exam',exam.id)"
+                    class="btn btn-danger">
+                    {{exam.status}}
+                  </span>
+                  <span *ngIf="exam.status == 'Upcoming' " class="btn btn-secondary">
+                    {{exam.status}}
+                  </span>
+                  <span *ngIf="exam.status == 'Expired' " class="btn btn-warning">
+                    {{exam.status}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="all-xm">
+        <h5><b>Upcoming Exam</b></h5>
+        <div class="xm-box" *ngIf='upcommingExamList.length == 0'>
+          No exams are there.
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="examBoxStyle" *ngIf='upcommingExamList.length > 0'>
+              <div class="row" *ngFor="let exam of upcommingExamList; index as i" style="margin: 10px;">
+                <div class="col-sm-10" style="padding: 7px;">
+                  <div class="col-sm-1" scope="row">
+                    <i style="border-radius: 50%;">
+                      <img class="imgStyle" src="../../../../assets/images/lg/new_res/header/exam_list_icon.png">
+                    </i>
+                  </div>
+                  <div class="col-sm-3">
+                    {{exam.subject_name}}<br><span class="instructor-name">Total marks : {{exam.score}}</span>
+                  </div>
+                  <div class="col-sm-2">
+                    Instructor<br><span class="instructor-name">{{exam.teacehr_name}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    {{exam.exam_type_name}}->{{exam.name}}<br><span class="instructor-name">{{exam.start_time | date:'
+                      hh:mm
+                      a '}}-{{exam.end_time | date:' hh:mm a'}}</span>
+                  </div>
+                  <div class="col-sm-2">
+                    {{exam.exam_date | date:'dd'}}&nbsp;{{exam.exam_date | date:'MMMM'}}&nbsp;{{exam.exam_date |
+                    date:'yyyy'}}
+                    <br><span class="instructor-name">{{exam.day_of_week}}</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 text-right" style="margin-top: 13px;">
+                  <span style="display: block;" *ngIf="exam.status == 'Done' " class="green_btn">
+                    {{exam.status}}
+                  </span>
+                  <span style="display: block;" *ngIf="exam.status == 'Pending' " class="yellow_btn">
+                    {{exam.status}}
+                  </span>
+                  <span style="display: block;" *ngIf="exam.status == 'Ongoing' "
+                    (click)="navigateToTarget('live-exam',exam.id)" class="red_btn">
+                    {{exam.status}}
+                  </span>
+                  <span style="display: block;" *ngIf="exam.status == 'Upcoming' " class="ash_btn">
+                    {{exam.status}}
+                  </span>
+                  <span style="display: block;" *ngIf="exam.status == 'Expired' " class="yellow_btn">
+                    {{exam.status}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='ans_sheet'>
+      <div class="all-xm">
+        <div class="xm-box" *ngIf='allDoneExamList.length == 0'>
+          You are not attended in any exam.
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="examBoxStyle" *ngIf='allDoneExamList.length > 0'>
+              <div class="row" *ngFor="let exam of allDoneExamList; index as i" style="margin: 10px;">
+                <div class="col-sm-11" style="padding: 3px">
+                  <div class="row">
+                  <div class="col-sm-1 text-center" style="padding-left: 3px; padding-right: 3px;">
+                    <i style="border-radius: 50%;">
+                      <img class="imgStyle" src="../../../../assets/images/lg/new_res/header/exam_list_icon.png">
+                    </i>
+                  </div>
+                  <div class="col-sm-3" style="padding-left: 3px; padding-right: 3px;">
+                    {{exam.subject_name}}<br><span class="instructor-name">Total marks : {{exam.score}}</span>
+                  </div>
+                  <div class="col-sm-2" style="padding-left: 3px; padding-right: 3px;">
+                    Instructor<br><span class="instructor-name">{{exam.teacehr_name}}</span>
+                  </div>
+                  <div class="col-sm-3" style="padding-left: 3px; padding-right: 3px;">
+                    {{exam.exam_type_name}}->{{exam.name}}<br><span class="instructor-name">{{exam.start_time | date:'
+                      hh:mm a '}}-{{exam.end_time | date:' hh:mm a'}}</span>
+                  </div>
+                  <div class="col-sm-2" style="padding-left: 3px; padding-right: 3px;">
+                    {{exam.exam_date | date:'dd'}}&nbsp;{{exam.exam_date | date:'MMMM'}}&nbsp;{{exam.exam_date |
+                    date:'yyyy'}}
+                    <br><span class="instructor-name">{{exam.day_of_week}}</span>
+                  </div>
+                  <div class="col-sm-1" style="padding-left: 3px; padding-right: 3px;">
+                    Marks
+                    <br><span class="instructor-name" *ngIf='exam.is_result_published' style="font-size: 14px;"><span
+                        style="color:#4aaf4e">{{exam.obtained_score}}</span><span style="color:red;">/{{exam.score}}</span></span>
+                  </div>
+                   </div>
+                </div>
+
+                <div class="col-sm-1" style="margin-top: 8px; padding: 0;">
+                  <button  *ngIf="exam.status == 'Done' "
+                    (click)="navigateToTargetViewMode('view-exam',exam)" class="green_btn">
+                    {{exam.status}}
+                  </button>
+                  <button  *ngIf="exam.status == 'Result Published' "
+                    (click)="navigateToTargetViewMode('view-exam',exam)" class="red_btn">
+                    Result
+                  </button>
+                  <button  *ngIf="exam.status == 'Expired' " class="yellow_btn">
+                    {{exam.status}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<style>
+  .container {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .exLogo {
+    width: 30px;
+  }
+
+  .borderless td,
+  .borderless th {
+    border: none;
+  }
+
+  .borderless {
+    margin-top: 1%;
+    margin-left: 1%;
+    max-height: 300px;
+  }
+
+  .todays-xm {
+    margin-bottom: 20px;
+  }
+
+  .xm-box {
+    border: 1px solid #80808082;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .instructor-name {
+    color: #808080db;
+    font-size: 11px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px !important;
+    ;
+    background: transparent !important;
+    /* make scrollbar transparent */
+  }
+</style>

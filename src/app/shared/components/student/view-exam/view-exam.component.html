@@ -1,0 +1,132 @@
+<!-- <link href="../../../../assets/fullpage/_grid-framework.css" rel="stylesheet"> -->
+<div id="fullpage" class="container" style="width: 98%;padding-left: 33px;">
+  <div class="section" style="padding-top: 2%;">
+        <div class="row">
+          <div class="col-sm-8">
+            <div style="position: absolute;left: -16px;top: 16px;cursor: pointer;" (click)="backtostdexamlist();">
+              <img src="../../../../../assets/images/back.png" alt="">
+            </div>
+            <div class="exam_name">
+              {{quiz.name}} Answer Script
+            </div>
+            <div class="subject_class">
+              <span>Subject : {{quiz.subject_name}} , </span> <span>Class : {{quiz.class_name}} </span>
+            </div>
+          </div>
+          <div class="col-sm-4" style="display: flex;justify-content: flex-end;">
+            <div style="text-align:right"><img style="height: 62px;
+                width: 66px;
+                border-radius: 50%;" src="../../../../assets/images/default_profile icon.png" alt=""></div>
+            &nbsp; &nbsp;
+            <div style="display: flex; flex-direction: column;justify-content: center;">
+              <div>{{quiz.teacehr_name}}</div>
+              <div style="font-weight: normal;">Instructor</div>
+            </div>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+          </div>
+          <div style="border-bottom: solid 0.5px #707070;padding-top:10px;width: 95%;margin-left: 16px;"></div>
+
+        </div>
+
+      
+        <div class="row">
+          <div class="col-sm-12" style="margin-top: 10px;">
+            <div class="total_marks">Total Marks : {{quiz.score}}</div>
+            <div *ngIf='quiz.obtained_score' class="marks_ob">Marks Obtained</div>
+            <div *ngIf='quiz.obtained_score' class="mark_number"> <span style="color:#0ba700">{{quiz.obtained_score}}
+              </span> <span style="color: #ff4848;">/ {{quiz.score}}</span></div>
+          </div>
+        </div>
+     
+  </div>
+
+  <div id='viewscrollpanel' class="q-container" *ngIf="mode=='quiz' && quiz"
+    style="overflow-y: scroll; max-height: 310px;overflow-x: hidden;">
+    <div *ngFor="let question of filteredQuestions; index as i">
+      <div style="width: 100%;">
+        <div style="width: 90%;float: left;">
+          <h3 class="q-index">Question {{question.serial_no}} :
+            <span class="questiondesc" [innerHTML]="question.question"></span>
+          </h3>
+        </div>
+        <div style="width: 10%;float:right; padding-left: 1%">
+          <!-- <h3 class="q-index" style="color: red;">Marks :
+    <span class="questiondesc" style="color: red;" [innerHTML]="question.score"></span>
+    </h3> -->
+        </div>
+      </div>
+
+      <div style="width: 100%;">
+        <div style="width: 85%;float: left;">
+          <div *ngIf="question.answer_with_type==='1'" class="row text-left options" style="margin-left: 4%;">
+            <div class="col-6" *ngFor="let option of question.mcq_optinos">
+              <div class="option">
+                <div class="radio-item">
+
+                  <span class="Right_wrong"
+                    *ngIf="option.name == question.answer && question.std_answer == question.answer && quiz.obtained_score">
+                    <img style="width: 38px;" class="" src="../../../../../assets/images/Group 3941.png" alt="">
+                  </span>
+                  <span class="Right_wrong"
+                    *ngIf="option.name == question.std_answer && question.std_answer != question.answer && quiz.obtained_score"><img
+                      style="width: 38px;" class="" src="../../../../../assets/images/Group 3940.png" alt=""></span>
+                  <!-- <input *ngIf="option.name == question.std_answer && !quiz.obtained_score" id="{{option.id}}" type="radio" disabled [(ngModel)]="question.std_answer" name="{{question.id}}" value="{{option.name}}"> -->
+                  <label for="{{option.id}}">
+                    {{option.option_no}}.
+                    <span *ngIf='!quiz.obtained_score'
+                      [ngClass]="option.name == question.std_answer ? 'opt-txt-wrong':'opt-txt'">{{option.name}} </span>
+                    <span *ngIf='quiz.obtained_score'
+                      [ngClass]="option.name == question.answer ? 'opt-txt-ans ': option.name == question.std_answer && question.std_answer != question.answer ? 'opt-txt-wrong' : 'opt-txt'">{{option.name}}
+                    </span>
+                  </label>
+                  <!-- <span>as</span> -->
+                </div>
+                <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="question.answer_with_type==='2'" class="row text-left options" style="margin-left: 4%;">
+            <div class="col-lg-10">
+              <div class="option">
+                <div class="radio-item">
+                  <span style="vertical-align: top">Answer : </span>
+                  <!-- <input disabled class="cinput" type="text" value='{{question.std_answer}}'> -->
+                  <textarea rows="5" disabled class="cinput">{{question.std_answer}}</textarea>
+
+                </div>
+                <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div style="width: 15%;float:right;">
+          <div class="obtain_mark">
+            <div *ngIf='!quiz.obtained_score' style="color: #ff4848;">Marks : {{question.score}}</div>
+
+            <div *ngIf='quiz.obtained_score' style="font-size: 12px; text-align: center;">
+              Marks Obtained
+            </div>
+            <div *ngIf='quiz.obtained_score' style="font-size: 16px;text-align: center;">
+              <span style="color: #0ba700;">{{question.score_against_answer}} </span> <span style="color: #ff4848;">/
+                {{question.score}} </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="text-center" style="width: 100%;">
+    <button class="btn btn-success" style="margin-top: 2%;" (click)="backtostdexamlist();">Back to List</button>
+    <button class="btn btn-primary" style="margin-top: 2%;" *ngIf="config.allowBack && pager.index > 0"
+      (click)="goTo(pager.index - 2);">PREVIOUS</button>
+    <button *ngIf='pager.index + 2 < pager.count' style="margin-top: 2%;" class="btn btn-default"
+      (click)="goTo(pager.index + 2);">{{'NEXT'}}</button>
+  </div>
+
+</div>

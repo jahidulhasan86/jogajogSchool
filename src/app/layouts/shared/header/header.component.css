@@ -1,0 +1,44 @@
+
+
+.header_left {
+    width: 20%;
+    padding: 12px 0;
+    margin: 0;
+    font-size: 15px;
+    background: #F1F1F4;
+    height: 64px;
+    border-right: 1px solid linear-gradient(to top, #F49D23, #F5CD1F);
+  }
+  
+  .header_right {
+    width: 80%;
+    margin: 0;
+    font-size: 15px;
+    height: 64px;
+    color: #F0F0F0;
+    font-size: 16px;
+    background-image: linear-gradient(to top, #F49D23, #F5CD1F);
+  }
+
+  
+.usr_action {
+    color: rgb(244, 163, 34);
+    height: 30px!important;
+    line-height: 0!important;
+    font-size: 15px;
+    margin-top: 9px;
+  }
+  .usr_action:hover {
+    background-color: rgb(244, 163, 34) !important;
+    color: white
+  }
+  button {
+    outline: 0;
+  }
+  .toggle_sidenav {
+    width: 20%;
+    color: #F4B520;
+    outline: none;   
+    position: relative;   
+    top: -3px;
+  }

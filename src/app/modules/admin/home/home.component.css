@@ -1,0 +1,12 @@
+.admin_dashboard {
+    text-align: center;
+    color: #f4b520;
+    font-size: 4em;
+    line-height: 1.3 ;
+}
+
+@media (max-width: 600px) {
+    .admin_dashboard {
+        font-size: 3em;
+    }
+}

@@ -1,0 +1,20 @@
+
+<div class="row">
+    <div  *ngIf="component_name == 'add_class'"  [ngClass]="component_name == 'class' ? 'col-sm-3 margin-bottom' : 'col-sm-3 margin-bottom'">
+      Branch
+    </div>
+    <div [ngClass]="component_name == 'class' ? 'col-sm-6 margin-bottom' : 'col-sm-3 margin-bottom'">
+      <select class="input-text"  [(ngModel)]="selectedBranch" (ngModelChange)="getAllDeptByBranchId()">
+        <option *ngFor="let branch of branchList" [selected]="branch.id" [ngValue]="branch">{{branch.name}}</option>
+      </select>
+    </div>
+   
+    <div  *ngIf="component_name == 'add_class'"  [ngClass]="component_name == 'class' ? 'col-sm-3 margin-bottom' : 'col-sm-3 margin-bottom'">
+      Department
+    </div>
+    <div  [ngClass]="component_name == 'class' ? 'col-sm-6 margin-bottom' : 'col-sm-3 margin-bottom'">
+      <select class="input-text" [(ngModel)]="selectedDepartment" (ngModelChange)="changeDepatment($event)">
+        <option *ngFor="let dept of departmentList" [selected]="dept.id"  [ngValue]="dept"> {{dept.name}}</option>
+      </select>
+    </div>
+  </div>

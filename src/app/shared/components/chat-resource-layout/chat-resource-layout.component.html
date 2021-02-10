@@ -1,0 +1,45 @@
+<div class="r-box-header">
+    <span class="btn btn-primary btn-selector tab-selector" (click)="updateSelectedDom($event,'chat')">Chat</span>
+    <span style="border: 1px solid #f49a22;color: #f49a22;" class="btn btn-selector tab-selector"
+        (click)="updateSelectedDom($event,'resource')">Resource</span>
+    <hr class="chat-box-hr">
+</div>
+
+<ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+         
+<div class="selected" style="min-height: 650px;">
+    <div class="chat-box" style="min-height: 650px; overflow-y: auto;">
+        <div class="chat-box-header" style="line-height: 1.3;">
+            <span>
+                <img style="margin-top: 6px;" src="../../../../assets/images/group_logo.png" height="53" width="53">
+            </span>
+            <span class="chat-room-name" *ngIf="subject || people">
+                {{subject ? subject.subject_name : ''}} {{people ? people.user_name: ''}}
+            </span>
+
+            <!-- <span class="chat-room-name" *ngIf="people">
+                {{people.user_name}}
+            </span> -->
+
+            <span class="chat-room-sname" *ngIf="subject || people">
+                {{ subject? 'Active Now' : people.onlineStatus == 'chat' ? 'Active' : people.onlineStatus == 'away' ? 'Away' : people.onlineStatus == 'dnd' ? 'Do not disturb' : '' }}
+            </span>
+
+            <div class="addIcon" [hidden]="isChatSelected">
+                <label for="file_picker_shared" style="display: inline;">
+                    <i id="attachmentFromShared" style="cursor: pointer;">
+                        <img class="add-file" title="Add File" name="MyImage" (mouseover)="onMouseOver()"
+                            (mouseout)="onMouseOut()" src="{{imgSrc}}" alt="Files Icon">
+                    </i>
+                </label>
+                <input id="file_picker_shared" type="file" multiple ngModel (change)="getFiles($event);"
+                    [hidden]="true" />
+            </div>
+            <hr class="chat-box-hr">
+        </div>   
+        <div class="chat-contents" style="text-align: center;font-family: PoplinsRegular;">
+            <app-chatting *ngIf="isChatSelected" [subject]="subject" [people]="people"></app-chatting>
+            <app-shared-resource *ngIf="!isChatSelected" [response]="response"></app-shared-resource>
+        </div>
+    </div>
+</div>

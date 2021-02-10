@@ -1,0 +1,223 @@
+
+.input-text {
+    width: 100%;
+    border: 1px solid #D6D9DE;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: white;
+  }
+  
+
+.theamButton {
+  border: none;
+  background-image: linear-gradient(to bottom, #F5CD1F, #F49D23);
+  padding: 10px 40px;
+  border-radius: 2px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+.theamdisabledButton {
+  border: none;
+  background-image: linear-gradient(to bottom, #b8b7b7,  #707070);
+  padding: 10px 40px;
+  border-radius: 2px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tab-default {
+  text-align: center;
+  padding: 10px;
+  width: 130px;
+  color: #F49D23;
+  background-image: white;
+  cursor: pointer;  
+}
+
+.tab-active {
+text-align: center;
+padding: 10px;
+width: 130px;
+color:white;
+background-image: linear-gradient(to top, #F49D23, #F5CD1F);
+cursor: pointer;
+}
+
+.container {
+  /* height: 100%; */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.btn {
+  width: 117px !important;
+  border-radius: 21px !important;
+}
+
+.exLogo {
+  width: 30px;
+}
+
+.borderless td,
+.borderless th {
+  border: none;
+}
+
+.borderless {
+  /* margin-top: 1%;
+  margin-left: 1%; */
+  max-height: 300px;
+}
+
+.todays-xm {
+  margin-bottom: 20px;
+}
+
+.xm-box {
+  border: 1px solid #80808082;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.instructor-name {
+  color: #808080db;
+  font-size: 11px;
+}
+
+::-webkit-scrollbar {
+  width: 0px !important;
+  ;
+  background: transparent !important;
+  /* make scrollbar transparent */
+}
+
+.exam-name{
+  font-size: 17px;
+    font-weight: bold;
+}
+
+.exam-note{
+  font-size: 12px;
+  color: #6b6969;
+}
+
+.exam-info{
+  padding-bottom: 10px;
+    border-bottom: 2px solid #c9c3c3;
+    padding-top: 13px;
+}
+
+input:focus {
+  outline: none !important;
+  border-color: #F4B520;
+}
+
+select:focus {
+  outline: none !important;
+  border-color: #F4B520;
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: #F4B520;
+}
+
+.attendedInExamlist th{
+  padding: 12px;
+}
+.table-row-color2{
+    background: #eae1e1;
+    border-radius: 7px;
+    box-shadow: 3px 3px #EBEFF5;
+}
+
+.margin_top {
+  margin-top: 13px;
+}
+
+.table-row-color1{
+  background: #F2F6FC;
+    border-radius: 7px;
+    box-shadow: 3px 3px #EBEFF5;
+}
+.imgStyleForAttndStd{
+  height: 40px; width: 40px;  
+  border-radius: 23px;
+  box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+.imgStyle{
+  height: 40px; width: 40px;  
+  border-radius: 12px;
+  box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+/* .examBoxStyle{
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  height: 83px;
+} */
+.examBoxStyle{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 12px;
+  /* box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0.3em 0.3em 1em rgba(0,0,0,0.1); */
+  box-shadow: inset 0 0 9px rgba(0,0,0,0.1)
+}
+
+.red_btn{
+  color: #f50303;
+  border: 2px solid red;
+  cursor: pointer;
+  width: 100px;
+  max-width: 100px;
+  padding: 5px;
+  border-radius: 39px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.green_btn{
+  color: #1FAE16;
+  cursor: pointer;
+  border: 2px solid #1FAE16;
+  width: 100px;
+  max-width: 100px;
+  padding: 5px;
+  border-radius: 39px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.ash_btn{
+  color: #707070;
+  border: 2px solid #707070;
+  width: 100px;
+  max-width: 100px;
+  padding: 5px;
+  border-radius: 39px;
+  text-align: center;
+  font-size: 15px;
+}
+.odditem{
+  background-color: rgba(255, 255, 253, 1);
+}
+.evenitem{
+  background-color: #F2F6FC;
+}
+.setup_exam{
+  background-image: linear-gradient(to top, rgb(244, 157, 35), rgb(245, 205, 31));
+  border-radius: 20px;
+  border: none;
+  color: white;
+  padding: 10px 22px 10px 22px;
+  outline: none;
+}
+
+@media only screen and (max-width:600px) {
+  .margin_top {
+    margin-top: 4px;
+  }
+}

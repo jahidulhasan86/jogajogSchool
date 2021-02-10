@@ -1,0 +1,50 @@
+<div class="continer-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="text-align: right;">
+                <button id="waitForHostId" style="color: #F4B520;
+          border: 2px solid #F4B520;
+          cursor: pointer;
+          width: 125px;
+          padding: 5px;
+          border-radius: 39px;
+          text-align: center;
+          font-size: 15px;
+          background: white;
+          outline: none;" (click)="closeDialog()">Leave</button>
+            </div>
+            <div class="col-sm-12">
+                <mat-spinner [diameter]="30"></mat-spinner>
+                <div style="text-align: center;">
+                    <h3 style="font-weight: bold;">
+                        Waiting for the host to start the class
+                    </h3>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold;">Class Name : </span>
+            </div>
+            <div class="col-sm-8">
+                <span>{{conferenceInfo.class_name}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold;">Subject Name : </span>
+            </div>
+            <div class="col-sm-8">
+                <span>{{conferenceInfo.subject_name}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold;">Teacher Name : </span>
+            </div>
+            <div class="col-sm-8">
+                <span>{{conferenceInfo.teachers_name}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold;">Class Status : </span>
+            </div>
+            <div class="col-sm-8">
+                <span style="color: red;">Not started</span>
+            </div>
+        </div>
+    </div>
+</div>

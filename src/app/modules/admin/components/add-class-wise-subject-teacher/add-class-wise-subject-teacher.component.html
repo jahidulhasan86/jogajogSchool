@@ -1,0 +1,91 @@
+<mat-card class="example-card">
+
+  <mat-card-header style="padding: 2% 0; text-align: center;">
+    <div class="heading" style="width: 100%;">
+      ASSIGN CLASS WISE SUBJECT AND TEACHER
+    </div>
+  </mat-card-header>
+  <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+  <mat-card-content style="background: #F1F3F9">
+    <!-- <form class="example-form"> -->
+    <div style="padding: 2% 3%">
+      <div class="box-header">General Information</div>
+      <div style="font-size:14px;color:#4D4D4D; margin-bottom:15px">Please enter new subject details below </div>
+      <div class="margin-bottom">
+        <app-branch-dept (sendDept)="deptReceived($event)" [component_name]="component_name_for_child"
+          [optionReset]="optionReset">
+        </app-branch-dept>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom">
+          Teacher
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <!--   <select class="input-text" [(ngModel)]="selectedTeacher">
+              <option *ngFor="let teacher of teacherList" [ngValue]="teacher">
+                {{teacher.user_name}}
+              </option>
+            </select> -->
+
+          <mat-form-field style="width: 100%;">
+            <mat-select placeholder="Teachers" [formControl]="teachers" multiple>
+              <mat-option *ngFor="let teacher of teacherList" [value]="teacher">{{teacher.user_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Class Name
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <select class="input-text" [(ngModel)]="selectedClass">
+            <option *ngFor="let class of classList" [ngValue]="class">
+              {{class.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Subject Name
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <input class="input-text" placeholder="Subject Name*" [(ngModel)]='model.subject_name'>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-sm-3 margin-bottom ">
+          Description
+        </div>
+        <div class="col-sm-9 margin-bottom">
+          <textarea class="input-text textarea-class" placeholder="Description"
+            [(ngModel)]='model.description'></textarea>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-6">
+          <mat-checkbox class="example-margin" [(ngModel)]="model.waiting_for_host">Wating For Host</mat-checkbox>
+        </div>
+        <div class="col-sm-6">
+          <!-- <input class="input-text" placeholder="Subject Name*" [(ngModel)]='model.subject_name'> -->
+        </div>
+      </div>
+    </div>
+    <!-- </form> -->
+
+  </mat-card-content>
+
+  <mat-card-actions style="text-align: center; padding-bottom: 2%; padding-top: 2%;">
+    <button
+      [disabled]="selectedBranch == null || selectedDepartment == null || selectedTeacher == null || selectedClass == null || model.subject_name == ''"
+      class="add-theamButton l2gTheamButtonColor" (click)="onSubmit()">SUBMIT</button> &nbsp;
+    <button class="reset-close-btn" (click)="resetField()">RESET</button> &nbsp;
+    <button class="reset-close-btn" (click)="closeDialog()">CLOSE</button>
+  </mat-card-actions>
+
+</mat-card>

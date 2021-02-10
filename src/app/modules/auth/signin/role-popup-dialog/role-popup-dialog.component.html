@@ -1,0 +1,53 @@
+<div style="text-align: center;">
+  <div class="row">
+    <label id="example-radio-group-label">Login as:</label>
+  </div><br>
+</div>
+
+<div class="row" style="text-align: center;">
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group" name="rad"
+      [(ngModel)]="model.selected_role">
+      <!-- <mat-radio-button style="width: 150px;" class="example-radio-button" *ngFor="let role of roles" [value]="role">
+        {{role.role_name}} 
+      </mat-radio-button> -->
+      <!-- <mat-radio-button style="width: 100px;" value="1" (change)="selectionChange($event)">Admin</mat-radio-button> -->
+      <mat-radio-button style="width: 100px;" value="2" (change)="selectionChange($event)">Teacher</mat-radio-button>
+      <mat-radio-button style="width: 100px;" value="3" (change)="selectionChange($event)">Student</mat-radio-button>
+    </mat-radio-group>
+ </div>
+<div class="row" *ngIf = "teacher" style="padding-top: 10px; text-align: center;">
+  <span style="display: block; font-weight: bold; padding-bottom: 5px;"> To: </span>
+    <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group" name="rad"
+    [(ngModel)]="model.orgType">
+    <!-- <mat-radio-button style="width: 150px;" class="example-radio-button" *ngFor="let role of roles" [value]="role">
+      {{role.role_name}} 
+    </mat-radio-button> -->
+    <mat-radio-button  value="1" (change)="companySelectionChange($event)" style="padding-right: 10px;">Jogajog Demo School</mat-radio-button>
+    <mat-radio-button  value="2" (change)="companySelectionChange($event)" style="padding-right: 10px;">Your own Organization</mat-radio-button>
+    
+  </mat-radio-group>
+  </div>
+
+ 
+    <mat-card *ngIf = "create">
+      <mat-card-header>
+        <mat-card-title>Your own Organization</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      
+          <mat-form-field class="updateProfileForm">
+            <input matInput placeholder="Input" placeholder="Organization Name" [(ngModel)]="model.Organization" 
+              required>
+          </mat-form-field>
+       
+      </mat-card-content>
+
+    </mat-card>
+  
+  <div class="row divStyle" style="margin-top: 5%; text-align: center;"> 
+		<button class="submit-btn" (click)="setRoleToLogin()">Submit</button>
+	</div>

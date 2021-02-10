@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.l2gTheamButtonColor{
+    background-image: linear-gradient(to bottom, #F5CD1F , #F49D23) !important;
+  }
+
+  .incoming-call-dialog-container mat-dialog-container {
+    padding: 0px;
+    overflow: hidden;
+  }
+
+  .wait_for_host mat-dialog-container {
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  
+  @media (max-width: 768px){
+      .overflow-dialog-container mat-dialog-container {
+        padding: 0px;
+        overflow: auto;
+        height: 400px;
+      }
+  }

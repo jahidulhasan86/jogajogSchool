@@ -1,0 +1,91 @@
+<!-- <link href="../../../../assets/fullpage/_grid-framework.css" rel="stylesheet"> -->
+<div id="fullpage" class="container full_width">
+  <ngx-spinner color = "#f49823" type = "ball-clip-rotate-pulse" size="medium" [fullScreen] = "true"   ><p style="color: white;">Please Wait..</p></ngx-spinner>
+    <div class="section" style="background-color: #F1F1F4;">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <span class="course-name">Course: {{quiz.class_name}} {{quiz.subject_name}}
+                {{quiz.name}}<br><span class="xm-name">Exam : {{quiz.exam_type_name}}</span><br><span
+                  class="teacher-name">Teacher : {{quiz.teacehr_name}}</span></span>
+            </div>
+            <div class="col-lg-4 text_center">
+              <span class="course-name">Total Marks : {{quiz.score}}<br>
+                <span class="qprogress-name">Question Progress</span>
+                <br><span class="currentQ"> {{pager.index + 2 > pager.count ? pager.count : pager.index + 2 }}</span><span class="time-separator">/</span><span
+                  class="totalQ">{{pager.count}}</span>
+              </span>
+              <!-- <span>Time: {{ellapsedTime}} / {{duration}}<br><span class="teacher-name">Question: {{pager.index + 1}}/{{pager.count}}</span></span> -->
+            </div>
+            <div class="col-lg-4 text_right">
+              <span class="course-name">Exam Time: {{quiz.period_in_minute}} Minutes <br>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="q-container" *ngIf="mode=='quiz' && quiz">
+      <div *ngFor="let question of filteredQuestions;">
+        <div class="q-index">Question {{question.serial_no}}:
+          <span class="questiondesc" [innerHTML]="question.name"></span>
+          <div>
+            <span style="color: gray;
+          font-size: 12px;
+          font-weight: normal;">Score :</span> &nbsp; 
+          <span style="color: gray;
+          font-size: 12px;
+          font-weight: normal;">{{question.score}}</span>
+          </div>
+        </div>
+        <div style="position: relative;
+        top: -3px;
+        color: gray;
+        font-size: 12px;
+        font-weight: normal;">
+          <span *ngIf="question.questionTypeId == '1'">Answer : {{question.answer}}</span>
+        </div>
+        <div *ngIf="question.questionTypeId==='1'" class="row text-left options mr_left margin_top">
+          <div class="col-lg-6 col-12" *ngFor="let option of question.options">
+            <div class="option">
+              <div class="radio-item">
+                <input id="{{option.id}}" type="radio" disabled [(ngModel)]="question.std_answer"
+                  (change)="onSelect(question, option);" name="{{question.id}}" value="{{option.name}}">
+                <label for="{{option.id}}">{{option.order}}. <span class="opt-txt">{{option.name}} </span></label>
+              </div>
+              <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+            </div>
+          </div>
+  
+        </div>
+        <div *ngIf="question.questionTypeId==='2'" class="row text-left options" style="margin-left: 1%;">
+          <div class="col-lg-10">
+            <div class="option">
+              <div class="radio-item">
+                <span>Answer : </span> <input disabled (blur)="onSelect(question,$event)" value='{{question.std_answer}}'
+                  class="cinput" type="text">
+  
+              </div>
+              <!-- <input id="{{option.id}}" type="radio" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.id}}. <span class="opt-txt">{{option.name}} </span> -->
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: 30px; margin-bottom: 20px;">
+        <!-- <button class="btn btn-primary" *ngIf="isScoring" (click)="goTo(pager.index - 2);">Score Submit</button> -->
+  
+        <!-- <button class="btn btn-primary" *ngIf="config.allowBack" (click)="goTo(pager.index - 2);">PREVIOUS</button>
+        <button *ngIf='pager.index!=pager.count-2' class="btn btn-default"
+          (click)="goTo(pager.index + 2);">{{'NEXT'}}</button>  -->
+          <button style="border: 1px solid orange;" class="btn btn-primary" *ngIf="config.allowBack && pager.index > 0" (click)="goTo(pager.index - 2);">PREVIOUS</button>
+          <!-- <button *ngIf='pager.index!=pager.count-2' style="margin-top: 2%;" class="btn btn-default" (click)="goTo(pager.index + 2);">{{'NEXT'}}</button> -->
+          <button mat-button *ngIf='pager.index + 2 < pager.count' class="next_btn" (click)="goTo(pager.index + 2);">{{'NEXT'}}</button>   
+          <button style="border: 2px solid #FAD6B5; color:orange;" mat-button 
+          (click)="closeDialog()">Close</button> 
+      </div>
+    </div>
+  
+  </div>
